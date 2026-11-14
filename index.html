@@ -1,385 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d18">
-<meta name="description" content="Meet the machines left on the Moon and Mars, discover the science they made possible, and hear their stories in this educational NASA Space Apps project.">
-<title>Abandoned, but Not Forgotten — Beyond the Mission</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Meet the machines left on the Moon and Mars.">
+  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+  <title>Lunar Rocks</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="stars"></div>
-<nav>
-  <a class="brand" href="#home">BEYOND<span> / </span>THE MISSION</a>
-  <div class="navlinks" id="navlinks">
-    <a href="#explore">Explore</a><a href="#timeline">Timeline</a><a href="#stories">Stories</a><a href="#quiz">Space quiz</a><a href="#sources">Resources</a>
-  </div>
-  <a class="nav-cta" href="#explore">Start exploring ↗</a>
-  <button class="menu" id="menu" aria-label="Open navigation">☰</button>
-</nav>
+  <div class="stars"></div>
 
-<header class="hero" id="home">
-  <div>
-    <div class="eyebrow"><span class="dot"></span> 2026 NASA Space Apps Challenge · Abandoned, but not forgotten</div>
-    <h1>Left behind.<br><em>Never forgotten.</em></h1>
-    <p>When a mission ends, some of the machines we send to other worlds stay behind. Meet the robots and equipment on the Moon and Mars, learn why they went, and see what they helped us discover.</p>
-    <div class="actions"><a class="primary" href="#explore">Meet the explorers&nbsp; ↗</a><a class="secondary" href="#timeline">Travel through time</a></div>
-  </div>
-  <div class="hero-art moon-art" role="img" aria-label="An astronaut exploring an old Moon rover, with Earth in the sky.">
-    <svg class="moon-scene" viewBox="0 0 620 440" aria-hidden="true">
-      <defs>
-        <linearGradient id="lunarGround" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#b4a994"/>
-          <stop offset="1" stop-color="#51515b"/>
-        </linearGradient>
-        <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#ffffff"/>
-          <stop offset="1" stop-color="#b8c6d6"/>
-        </linearGradient>
-        <radialGradient id="earth">
-          <stop stop-color="#83d7ff"/>
-          <stop offset="1" stop-color="#3273ad"/>
-        </radialGradient>
-      </defs>
-      <circle cx="509" cy="79" r="31" fill="url(#earth)"/>
-      <path d="M482 92q27-13 54-3" fill="none" stroke="#bcecff" stroke-width="4" opacity=".7"/>
-      <g fill="#eaf4ff">
-        <circle cx="89" cy="77" r="2"/><circle cx="206" cy="48" r="1.5"/><circle cx="367" cy="102" r="2"/>
-        <circle cx="568" cy="164" r="1.5"/><circle cx="289" cy="143" r="1.5"/><circle cx="133" cy="177" r="1.5"/>
-      </g>
-      <path d="M0 315q92-41 188-6t190 0q118-42 242-3v134H0z" fill="url(#lunarGround)"/>
-      <path d="M0 358q100-27 188-1t185-3q111-27 247-3" fill="none" stroke="#d7ccbb" stroke-width="2" opacity=".35"/>
-      <ellipse cx="93" cy="365" rx="39" ry="9" fill="#77747a"/>
-      <ellipse cx="532" cy="344" rx="48" ry="11" fill="#77747a"/>
-      <g class="lunar-rover">
-        <circle cx="376" cy="354" r="19" fill="#222b37" stroke="#d0d5d9" stroke-width="3"/>
-        <circle cx="455" cy="354" r="19" fill="#222b37" stroke="#d0d5d9" stroke-width="3"/>
-        <circle cx="376" cy="354" r="7" fill="#8996a2"/>
-        <circle cx="455" cy="354" r="7" fill="#8996a2"/>
-        <path d="M373 339 386 311h57l15 28z" fill="#d2a768" stroke="#645b4c" stroke-width="3"/>
-        <path d="M386 311v-15h39v15m17 0 9-24" fill="none" stroke="#d7e3ed" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="452" cy="284" r="4" fill="#d7e3ed"/>
-        <path d="M395 311v28m28-28v28" stroke="#73634d" stroke-width="3"/>
-      </g>
-      <g class="lunar-astronaut">
-        <rect x="208" y="286" width="25" height="43" rx="8" fill="#dd9c58" stroke="#6b5b4b" stroke-width="3"/>
-        <path d="M217 326 207 359h19l7-29m17-4 12 32h-19l-9-28" fill="url(#suit)" stroke="#667485" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M202 357h26l2 9h-29m27-9h19l5 9h-25" fill="#b9c5d2" stroke="#667485" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M205 277q0-12 13-15h16q15 4 14 19l-4 34q-3 13-17 13h-7q-14 0-17-13z" fill="url(#suit)" stroke="#667485" stroke-width="3"/>
-        <circle cx="224" cy="266" r="25" fill="url(#suit)" stroke="#667485" stroke-width="3"/>
-        <path d="M209 260q14-14 30-2v14q-15 9-30-1z" fill="#31556c" stroke="#8bdcff" stroke-width="2"/>
-        <path d="m244 286 26 8m0 0 7-5m-7 5 7 4" fill="none" stroke="#e6edf4" stroke-width="7" stroke-linecap="round"/>
-        <path d="M209 286 196 306" fill="none" stroke="#dce5ee" stroke-width="8" stroke-linecap="round"/>
-      </g>
-      <g fill="#d6c9b6" opacity=".75">
-        <circle cx="279" cy="382" r="2"/><circle cx="304" cy="393" r="1.5"/><circle cx="343" cy="379" r="2"/>
-        <circle cx="485" cy="383" r="1.5"/><circle cx="169" cy="388" r="2"/>
-      </g>
-    </svg>
-  </div>
-  <div class="scroll-note">Scroll to begin your journey ↓</div>
-</header>
+  <!-- Navigation -->
+  <nav>
+    <a class="brand" href="#home">BEYOND<span> / </span>THE MISSION</a>
 
-<div class="stats">
-  <div class="stat"><b>60+</b><span>years of robotic exploration</span></div>
-  <div class="stat"><b>2</b><span>worlds with machines left behind</span></div>
-  <div class="stat"><b>8</b><span>machine stories to explore</span></div>
-  <div class="stat"><b>1</b><span>shared human curiosity</span></div>
-</div>
+    <details class="nav-dropdown">
+      <summary aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
 
-<section class="explore" id="explore">
-  <div class="section-head"><div><div class="kicker">Machines from past missions</div><h2>Meet the machines<br>that made history.</h2></div><p>Choose a machine to see what it did, what it helped us learn, and where it is now. Some are left behind; others are still travelling through space.</p></div>
-  <div class="filters">
-    <button class="filter active" data-filter="All">All machines</button>
-    <button class="filter" data-filter="Moon">The Moon</button>
-    <button class="filter" data-filter="Mars">Mars</button>
-    <button class="filter" data-filter="Deep Space">Farther out</button>
-    <input class="search" id="search" type="search" placeholder="Find a machine..." aria-label="Find a machine">
-  </div>
-  <div class="cards" id="cards"></div>
-</section>
-
-<section id="timeline">
-  <div class="section-head"><div><div class="kicker">A history of discovery</div><h2>One small step.<br>Decades of discovery.</h2></div><p>Travel through time to see how explorers on the Moon and Mars helped us learn more about our neighbors in space.</p></div>
-  <div class="timeline">
-    <div class="event"><time>1969</time><div><h3>Apollo 11 reaches the Moon</h3><p>People walk on the Moon. The bottom part of their lander stays behind when they leave.</p></div></div>
-    <div class="event"><time>1971</time><div><h3>Apollo 15 brings a Moon car</h3><p>The battery-powered rover helps astronauts travel farther and bring back more Moon rocks.</p></div></div>
-    <div class="event"><time>1997</time><div><h3>Sojourner explores Mars</h3><p>The small rover becomes the first successful wheeled rover to operate on Mars, testing a new way to explore.</p></div></div>
-    <div class="event"><time>2004</time><div><h3>Spirit and Opportunity arrive</h3><p>The twin rovers find evidence that liquid water once changed rocks and landscapes on ancient Mars.</p></div></div>
-    <div class="event"><time>2012</time><div><h3>Curiosity lands on Mars</h3><p>The rover looks for signs that Mars once had places where tiny living things could survive.</p></div></div>
-    <div class="event"><time>2021</time><div><h3>Perseverance begins a new chapter</h3><p>The rover explores an ancient river delta and collects rocks that may one day be studied on Earth.</p></div></div>
-  </div>
-</section>
-
-<section id="stories">
-  <div class="story">
-    <div class="story-visual"><img src="https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg" alt="Mars surface photographed by a NASA rover" onerror="this.style.display='none'"><div class="quote-label">Field notes from another world</div></div>
-    <div class="story-copy"><div class="kicker">A different point of view</div><h2>If these machines could tell their stories…</h2><p>Imagine the journey through a machine's eyes: the launch, the long trip through space, the first view of a new world, and the discoveries it sent back to Earth.</p><blockquote>“I was built to go where you could not. Every picture and every rock I studied became a clue about another world.”</blockquote><p><strong>A note about the story:</strong> The machine's voice is make-believe. The mission facts come from NASA.</p><a class="primary" href="#explore">Discover a real mission ↗</a></div>
-  </div>
-</section>
-
-<section id="quiz">
-  <div class="quiz">
-    <div class="kicker">Test what you learned</div>
-    <h2>Your turn, space explorer.</h2>
-    <p id="question">Which robot was the first to drive across Mars?</p>
-    <div class="answers" id="answers">
-      <button class="answer" data-answer="Sojourner">Sojourner</button><button class="answer" data-answer="Curiosity">Curiosity</button><button class="answer" data-answer="Perseverance">Perseverance</button><button class="answer" data-answer="Lunokhod 1">Lunokhod 1</button>
-    </div>
-    <div class="feedback" id="feedback" aria-live="polite"></div>
-    <button class="primary quiz-next" id="next" hidden>Next question →</button>
-  </div>
-</section>
-
-<section id="sources">
-  <div class="section-head"><div><div class="kicker">References & more to explore</div><h2>Follow the facts to NASA.</h2></div><p>Mission facts and pictures come from NASA. Open these links to see more, and check NASA for the latest mission updates.</p></div>
-  <div class="sources">
-    <a href="https://www.nasa.gov/mission/apollo-11/" target="_blank" rel="noopener">NASA · Apollo 11 ↗</a>
-    <a href="https://science.nasa.gov/moon/" target="_blank" rel="noopener">NASA · Moon exploration & rovers ↗</a>
-    <a href="https://science.nasa.gov/mission/mars-pathfinder/" target="_blank" rel="noopener">NASA · Mars Pathfinder ↗</a>
-    <a href="https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/" target="_blank" rel="noopener">NASA · Spirit & Opportunity ↗</a>
-    <a href="https://science.nasa.gov/mission/msl-curiosity/" target="_blank" rel="noopener">NASA · Curiosity ↗</a>
-    <a href="https://science.nasa.gov/mission/mars-2020-perseverance/" target="_blank" rel="noopener">NASA · Perseverance ↗</a>
-    <a href="https://science.nasa.gov/mission/voyager/" target="_blank" rel="noopener">NASA · Voyager ↗</a>
-    <a href="https://science.nasa.gov/solar-system/" target="_blank" rel="noopener">NASA · Solar System ↗</a>
-    <a href="https://images.nasa.gov/" target="_blank" rel="noopener">NASA · Image and Video Library ↗</a>
-  </div>
-  <div class="nasa-resources">
-    <div class="resource-intro">
-      <div>
-        <div class="kicker">NASA data & resources</div>
-        <h3>Go deeper with NASA's mission records.</h3>
-        <p>The NASA Space Science Data Coordinated Archive (NSSDCA) is a public catalog of spacecraft. Look up when they launched, what they did, and where they are now.</p>
+      <div class="dropdown-links">
+        <a href="#Moon">Moon</a>
+        <a href="#Mars">Mars</a>
+        <a href="#Quiz">Quiz</a>
+        <a href="#Resources">Resources</a>
+        <a href="#Return Home">Return Home</a>
       </div>
-      <a class="primary" href="https://nssdc.gsfc.nasa.gov/" target="_blank" rel="noopener">Open the NSSDCA catalog ↗</a>
+    </details>
+  </nav>
+
+  <!-- Main Hero -->
+  <header class="hero" id="home">
+
+    <!-- Left side / Side with the text and details -->
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        <span class="dot"></span>
+        2026 NASA Space Apps Challenge · Abandoned, but not forgotten
+      </div>
+
+      <h1>
+        Left behind.<br>
+        <em>Never forgotten.</em>
+      </h1>
+
+      <p>
+        When a mission ends, some of the machines we send to other
+        worlds stay behind. Meet the robots and equipment on the
+        Moon and Mars, learn why they went, and see what they
+        helped us discover.
+      </p>
+
+      <div class="actions">
+        <a class="primary" href="#explore">
+          Start exploring&nbsp;↗
+        </a>
+      </div>
+
     </div>
-    <div class="resource-groups">
-      <article class="resource-group">
-        <h3>The Moon</h3>
-        <ul>
-          <li><a href="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" target="_blank" rel="noopener"><strong>Apollo Moon landers</strong><span>The lower parts of the landers stayed on the Moon when astronauts flew home.</span></a></li>
-          <li><a href="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C" target="_blank" rel="noopener"><strong>Apollo Moon cars</strong><span>Three battery-powered cars helped astronauts travel farther across the Moon.</span></a></li>
-          <li><a href="https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C" target="_blank" rel="noopener"><strong>Apollo science packages</strong><span>Instruments left on the Moon measured moonquakes and other clues.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/surveyor-3/" target="_blank" rel="noopener"><strong>Surveyor 3</strong><span>A robot lander that tested how to land softly on the Moon.</span></a></li>
-        </ul>
-      </article>
-      <article class="resource-group">
-        <h3>Mars</h3>
-        <ul>
-          <li><a href="https://science.nasa.gov/mission/mars-pathfinder/" target="_blank" rel="noopener"><strong>Sojourner</strong><span>The first small robot rover to explore the Martian surface.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/" target="_blank" rel="noopener"><strong>Spirit & Opportunity</strong><span>Twin rovers that found clues that water once changed Mars.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/viking-1/" target="_blank" rel="noopener"><strong>Viking landers</strong><span>Early NASA landers that sent back pictures and science from Mars.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/mars-phoenix/" target="_blank" rel="noopener"><strong>Phoenix</strong><span>A lander that dug into the soil and found water ice.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/insight/" target="_blank" rel="noopener"><strong>InSight</strong><span>A lander that listened for marsquakes deep inside the planet.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/" target="_blank" rel="noopener"><strong>Ingenuity helicopter</strong><span>The first aircraft to fly on Mars; it is now grounded after its blades were damaged.</span></a></li>
-        </ul>
-      </article>
-      <article class="resource-group">
-        <h3>Other destinations</h3>
-        <ul>
-          <li><a href="https://science.nasa.gov/mission/dawn/" target="_blank" rel="noopener"><strong>Dawn</strong><span>Explored Vesta and Ceres, and remains in orbit around Ceres.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/near-shoemaker/" target="_blank" rel="noopener"><strong>NEAR Shoemaker</strong><span>Visited the asteroid Eros and came to rest on its surface.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/pioneer-10/" target="_blank" rel="noopener"><strong>Pioneer 10 & 11</strong><span>Early spacecraft that flew past the giant outer planets and kept going.</span></a></li>
-          <li><a href="https://science.nasa.gov/mission/kepler/" target="_blank" rel="noopener"><strong>Kepler Space Telescope</strong><span>Searched for planets around other stars until it ran out of fuel.</span></a></li>
-        </ul>
-      </article>
-    </div>
-    <p class="disclaimer">NASA does not endorse any non-U.S. Government entity and is not responsible for information contained on non-U.S. Government websites. For non-U.S. Government websites, participants must comply with any data use parameters of that specific website.</p>
-  </div>
-</section>
 
-<footer><div><strong>BEYOND / THE MISSION</strong><br>Every mission leaves a story.</div><div>Created for the 2026 NASA Space Apps Challenge.<br>Educational concept · Not an official NASA website.</div></footer>
+    <!-- Right side: Video / The video of the homepage -->
+    <video class="hero-video" autoplay muted loop playsinline poster="space-poster.jpg">
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box"><button class="modal-close" id="close" aria-label="Close">✕</button><div class="kicker" id="modalPlanet">Machine story</div><h2 id="modalTitle"></h2><div class="status" id="modalStatus"></div><p id="modalDescription"></p><div class="detail-grid" id="modalDetails"></div><p id="modalStory"></p><a id="modalSource" class="read" href="#" target="_blank" rel="noopener">Read the NASA mission page ↗</a></div>
-</div>
-<aside class="space-guide" aria-label="Astro, your space guide">
-  <span class="guide-astronaut" aria-hidden="true">🧑‍🚀</span>
-  <div class="guide-bubble" role="status" aria-live="polite" aria-atomic="true">
-    <strong>Astro's quick tip</strong>
-    <span id="guideTip">A rover is a robot that explores another world.</span>
-  </div>
-</aside>
-<div class="traveling-ship" id="travelingShip" aria-hidden="true">
-  <svg viewBox="0 0 64 64" focusable="false">
-    <path d="M31 7c-8 9-12 21-12 35l13 11 13-11c0-14-4-26-12-35z" fill="#d9f4ff" stroke="#5488a8" stroke-width="2"/>
-    <path d="M19 30 8 42l11 1m26-13 11 12-11 1" fill="#ffb36b" stroke="#c77845" stroke-width="2" stroke-linejoin="round"/>
-    <circle cx="32" cy="27" r="6" fill="#70cfff" stroke="#356c8b" stroke-width="2"/>
-    <path d="m27 48 5 10 5-10" fill="#ffb36b" stroke="#c77845" stroke-width="2" stroke-linejoin="round"/>
-  </svg>
-</div>
-<script>
-const missions=[
-{id:"apollo11",name:"Apollo 11 Moon lander",place:"Moon",year:"1969",status:"Left on the Moon",active:false,tag:"First Moon landing",image:"https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~orig.jpg",summary:"The bottom half of the lander stayed on the Moon after Neil Armstrong and Buzz Aldrin lifted off.",purpose:"Carry astronauts down to the Moon so they could explore its surface.",discovery:"The Apollo 11 crew brought the first Moon rocks back to Earth and showed people could land and work there.",ending:"The astronauts took off in the top half of the lander. The bottom half stayed behind at the landing site.",source:"https://www.nasa.gov/mission/apollo-11/",story:"I carried two explorers to the Moon. They climbed down my ladder, gathered rocks and looked back at Earth. When it was time to leave, they took off in the top half of me. I stayed where history happened.",detail:["Destination","Moon","Mission year","1969","Equipment type","Bottom half of the Moon lander","What it helped us do","Land people on the Moon"]},
+      <source src="Media/Homepage Video.mp4" type="video/mp4">
+      <div class="video-overlay"></div>
 
-{id:"sojourner",name:"Sojourner rover",place:"Mars",year:"1997",status:"Left on Mars",active:false,tag:"First Mars rover",image:"https://images-assets.nasa.gov/image/PIA01122/PIA01122~orig.jpg",summary:"A small six-wheeled robot that showed how a rover could explore Mars.",purpose:"Try out a robot rover and study nearby Martian rocks and soil.",discovery:"It studied rocks and soil, and showed that robot explorers could travel across Mars.",ending:"NASA lost contact with Sojourner in September 1997. It remains on Mars near the Pathfinder lander.",source:"https://science.nasa.gov/mission/mars-pathfinder/",story:"I was small enough to fit into a lander, but my wheels carried me across another planet. I studied rocks one careful move at a time and helped make future Mars rovers possible.",detail:["Destination","Mars","Mission year","1997","Equipment type","Wheeled robot","What it helped us do","Try out a Mars rover"]},
-
-{id:"spirit",name:"Spirit rover",place:"Mars",year:"2004",status:"Left on Mars",active:false,tag:"One of a pair",image:"https://images-assets.nasa.gov/image/PIA05040/PIA05040~orig.jpg",summary:"One of two robot explorers sent to find clues about water on Mars.",purpose:"Explore the rocks and soil of Gusev Crater for signs of how water changed Mars.",discovery:"Spirit found rocks and soil that had been changed by water long ago.",ending:"Spirit got stuck in soft soil in 2009. NASA stopped trying to contact it in 2011.",source:"https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",story:"I crossed a crater, climbed hills and examined rocks shaped by water long before I arrived. My wheels eventually stopped moving, but the clues I found kept travelling back to Earth.",detail:["Destination","Mars","Mission year","2004","Equipment type","Wheeled rover","What it helped us learn","How water changed rocks"]},
-
-{id:"opportunity",name:"Opportunity rover",place:"Mars",year:"2004",status:"Left on Mars",active:false,tag:"Long-running rover",image:"https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg",summary:"Spirit's twin robot explorer travelled for years across a wide, flat part of Mars.",purpose:"Study Martian rocks and soil for clues about water in Mars' past.",discovery:"It found strong clues that water once flowed across parts of Mars and changed the rocks.",ending:"A huge dust storm blocked sunlight in 2018. NASA ended the mission in 2019 after it could not contact the rover.",source:"https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",story:"I was designed for a short journey, but I kept going. I crossed plains, climbed craters and sent home evidence that Mars was once a very different place.",detail:["Destination","Mars","Mission year","2004","Equipment type","Wheeled rover","What it helped us learn","How water changed rocks"]},
-
-{id:"curiosity",name:"Curiosity rover",place:"Mars",year:"2012",status:"Active mission",active:true,tag:"Car-sized science rover",image:"https://images-assets.nasa.gov/image/PIA16092/PIA16092~orig.jpg",summary:"A car-sized robot exploring Mars and studying the planet's rocks and past.",purpose:"Find out whether Mars once had places where tiny living things could have survived.",discovery:"It found signs that ancient Mars had water and some ingredients needed for life. It has not found life.",ending:"Curiosity is still exploring. Check NASA's mission page for the latest updates.",source:"https://science.nasa.gov/mission/msl-curiosity/",story:"I am a science lab on wheels. I drill into rocks and climb Mount Sharp to learn how Mars changed over time.",detail:["Destination","Mars","Mission year","2012","Equipment type","Mobile science rover","What it helped us learn","Mars once had water"]},
-
-{id:"perseverance",name:"Perseverance rover",place:"Mars",year:"2021",status:"Active mission",active:true,tag:"Mars sample collector",image:"https://images-assets.nasa.gov/image/PIA24493/PIA24493~orig.jpg",summary:"A robot exploring Jezero Crater, looking for signs of ancient life and collecting rocks for study.",purpose:"Study the crater, search for signs of ancient life and collect rocks that could one day be brought to Earth.",discovery:"It is exploring an ancient river delta and saving rock samples that may hold clues about Mars' past.",ending:"Perseverance is still exploring. Its old landing gear was left on Mars, separate from the working rover.",source:"https://science.nasa.gov/mission/mars-2020-perseverance/",story:"I arrived with a tiny helicopter tucked beneath me and a plan to explore an ancient lakebed. I collect carefully selected rocks because one day, scientists hope to study them in laboratories on Earth.",detail:["Destination","Mars","Mission year","2021","Equipment type","Wheeled rover","What it is doing","Collecting rocks for study"]},
-
-{id:"voyager1",name:"Voyager 1",place:"Deep Space",year:"1977",status:"Still travelling",active:true,tag:"Journey beyond the planets",image:"https://images-assets.nasa.gov/image/PIA17046/PIA17046~orig.jpg",summary:"A spacecraft that flew past the giant planets and kept travelling far beyond them.",purpose:"Visit Jupiter and Saturn, then explore the far reaches of space.",discovery:"It sent back remarkable pictures and information about Jupiter and Saturn before continuing its journey.",ending:"Voyager 1 is not left behind: it is still travelling and sending messages back to Earth.",source:"https://science.nasa.gov/mission/voyager/",story:"I left Earth in 1977 carrying a message from humanity. I flew past giant planets and kept going, carrying a record of where I came from into the space between stars.",detail:["Destination","Far beyond the planets","Mission year","1977","Equipment type","Spacecraft","What it is doing","Still travelling through space"]},
-
-{id:"lunarrover",name:"Apollo Moon car",place:"Moon",year:"1971–1972",status:"Left on the Moon",active:false,tag:"Lunar Roving Vehicle",image:"https://images-assets.nasa.gov/image/as15-86-11603/as15-86-11603~orig.jpg",summary:"A battery-powered car that helped astronauts explore farther from their Moon landing sites.",purpose:"Carry astronauts, tools and Moon rocks across the surface.",discovery:"It helped astronauts visit more places and bring back more Moon rocks during Apollo 15, 16 and 17.",ending:"All three Moon cars were left where the astronauts parked them.",source:"https://science.nasa.gov/moon/",story:"I carried astronauts across the dusty Moon. My wheels left tracks in a place where rain and wind cannot easily erase them. I am still parked where the final crew left me.",detail:["Destination","Moon","Mission years","1971–1972","Equipment type","Battery-powered Moon car","What it helped us do","Explore more of the Moon"]}
-];
-
-let activeFilter="All";
-const cards=document.getElementById("cards");
-
-function renderCards(){
- const q=document.getElementById("search").value.toLowerCase();
- const shown=missions.filter(m=>(activeFilter==="All"||m.place===activeFilter)&&(m.name+" "+m.summary+" "+m.tag).toLowerCase().includes(q));
-
- cards.innerHTML=shown.length?shown.map(m=>`<article class="card" tabindex="0" role="button" aria-label="Read about ${m.name}" data-id="${m.id}"><div class="card-visual"><img src="${m.image}" alt="${m.name}" loading="lazy" onerror="this.style.display='none'"><span class="planet-tag">${m.place}</span></div><div class="card-content"><span class="status ${m.active?'':'inactive'}">${m.status}</span><h3>${m.name}</h3><div class="meta">${m.year} · ${m.tag}</div><p>${m.summary}</p><span class="read">Meet this machine ↗</span></div></article>`).join(""):'<div class="empty">No machines match that search. Try another name or place.</div>';
-}
-
-function openMission(id){
- const m=missions.find(x=>x.id===id);
- if(!m)return;
-
- document.getElementById("modalPlanet").textContent=m.place+" / "+m.year;
- document.getElementById("modalTitle").textContent=m.name;
-
- const status=document.getElementById("modalStatus");
- status.textContent=m.status;
- status.className="status "+(m.active?"":"inactive");
-
- document.getElementById("modalDescription").textContent=m.summary;
-
- document.getElementById("modalDetails").innerHTML=m.detail.map((v,i)=>i%2===0?`<div class="detail"><small>${v}</small><b>${m.detail[i+1]||""}</b></div>`:"").join("");
-
- document.getElementById("modalStory").innerHTML="<strong>Make-believe machine story</strong><br>"+m.story;
- document.getElementById("modalSource").href=m.source;
- document.getElementById("modal").classList.add("open");
- document.body.style.overflow="hidden";
-}
-
-function closeModal(){
- document.getElementById("modal").classList.remove("open");
- document.body.style.overflow="";
-}
-
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
- activeFilter=b.dataset.filter;
- renderCards();
-}));
-
-document.getElementById("search").addEventListener("input",renderCards);
-
-cards.addEventListener("click",e=>{
- const c=e.target.closest(".card");
- if(c)openMission(c.dataset.id);
-});
-
-cards.addEventListener("keydown",e=>{
- if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("card")){
-  e.preventDefault();
-  openMission(e.target.dataset.id);
- }
-});
-
-document.getElementById("close").addEventListener("click",closeModal);
-
-document.getElementById("modal").addEventListener("click",e=>{
- if(e.target.id==="modal")closeModal();
-});
-
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape")closeModal();
-});
-
-document.getElementById("menu").addEventListener("click",()=>{
- document.getElementById("navlinks").classList.toggle("show");
-});
-
-document.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>{
- document.getElementById("navlinks").classList.remove("show");
-}));
-
-renderCards();
-
-const questions=[
-{q:"Which robot was the first to drive across Mars?",a:["Sojourner","Curiosity","Perseverance","Lunokhod 1"],correct:"Sojourner",why:"Sojourner explored Mars in 1997 as part of the Pathfinder mission."},
-{q:"What happened to the bottom half of the Apollo 11 Moon lander?",a:["It returned to Earth","It stayed on the Moon","It went to Mars","It is still flying near Earth"],correct:"It stayed on the Moon",why:"The astronauts took off in the top half. The bottom half stayed at the landing site."},
-{q:"What did the Curiosity rover help scientists learn?",a:["It found living things","Mars once had water","It went to the Moon","It launched in 1969"],correct:"Mars once had water",why:"Curiosity found signs of an ancient watery place, not life itself."},
-{q:"Which spacecraft flew past the giant planets and kept going?",a:["Sojourner","Apollo 15 rover","Voyager 1","Pathfinder lander"],correct:"Voyager 1",why:"Voyager 1 flew past Jupiter and Saturn, then continued farther into space."}
-];
-
-let qi=0,answered=false;
-
-function loadQuestion(){
- const x=questions[qi];
- document.getElementById("question").textContent=x.q;
- document.getElementById("answers").innerHTML=x.a.map(a=>`<button class="answer" data-answer="${a}">${a}</button>`).join("");
- document.getElementById("feedback").textContent="";
- document.getElementById("next").hidden=true;
- answered=false;
-}
-
-document.getElementById("answers").addEventListener("click",e=>{
- const b=e.target.closest(".answer");
- if(!b||answered)return;
-
- answered=true;
- const x=questions[qi];
-
- document.querySelectorAll(".answer").forEach(a=>{
-  if(a.dataset.answer===x.correct)a.classList.add("correct");
-  else if(a===b)a.classList.add("wrong");
-  a.disabled=true;
- });
-
- document.getElementById("feedback").textContent=(b.dataset.answer===x.correct?"Correct! ":"Not quite. ")+x.why;
- document.getElementById("next").hidden=false;
- document.getElementById("next").textContent=qi===questions.length-1?"Try again ↻":"Next question →";
-});
-
-document.getElementById("next").addEventListener("click",()=>{
- qi=qi===questions.length-1?0:qi+1;
- loadQuestion();
-});
-
-const guideTips={
- explore:"A rover is a robot that explores another world.",
- timeline:"A mission timeline shows what happened and when.",
- stories:"The machine's voice is make-believe; its mission facts are real.",
- quiz:"Ready to test what you learned? Take your best guess!",
- sources:"NASA's mission pages are a great place to learn more."
-};
-const guideTip=document.getElementById("guideTip");
-const guideObserver=new IntersectionObserver(entries=>{
- const current=entries.find(entry=>entry.isIntersecting);
- if(current&&guideTips[current.target.id])guideTip.textContent=guideTips[current.target.id];
-},{rootMargin:"-30% 0px -55% 0px"});
-Object.keys(guideTips).forEach(id=>guideObserver.observe(document.getElementById(id)));
-
-const ship=document.getElementById("travelingShip");
-const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
-if(!reduceMotion.matches){
- let shipUpdatePending=false;
- const updateShip=()=>{
-  const pageLength=document.documentElement.scrollHeight-window.innerHeight;
-  const progress=pageLength>0?window.scrollY/pageLength:0;
-  const x=(window.innerWidth-72)*(.5+.38*Math.sin(progress*Math.PI*2));
-  const y=window.innerHeight*(.12+progress*.68);
-  ship.style.transform=`translate3d(${x}px,${y}px,0) rotate(${Math.sin(progress*Math.PI*2)*12}deg)`;
-  shipUpdatePending=false;
- };
- window.addEventListener("scroll",()=>{
-  if(shipUpdatePending)return;
-  shipUpdatePending=true;
-  window.requestAnimationFrame(updateShip);
- },{passive:true});
- window.addEventListener("resize",updateShip);
- updateShip();
-}
-</script>
+      <div class="video-caption">
+        <span class="dot"></span>
+        BEYOND OUR WORLD
+      </div>
+  </header>
 </body>
+
 </html>
