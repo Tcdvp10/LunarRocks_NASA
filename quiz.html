@@ -1,134 +1,385 @@
-<section id="quiz">
-    <div class="quiz">
-        <div class="kicker">Test what you learned</div>
-        <h2>Your turn, space explorer.</h2>
-        <p id="question">Which robot was the first to drive across Mars?</p>
-        <div class="answers" id="answers">
-            <button class="answer" data-answer="Sojourner">Sojourner</button><button class="answer"
-                data-answer="Curiosity">Curiosity</button><button class="answer"
-                data-answer="Perseverance">Perseverance</button><button class="answer" data-answer="Lunokhod 1">Lunokhod
-                1</button>
-        </div>
-        <div class="feedback" id="feedback" aria-live="polite"></div>
-        <button class="primary quiz-next" id="next" hidden>Next question →</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061735">
+<meta name="description" content="Test your knowledge of NASA's Moon and Mars missions, collect stars, and earn a mission rating.">
+<title>Mission Quiz — Beyond the Mission</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body.quiz-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 82% 18%, rgba(11, 61, 145, .48), transparent 38%),
+    linear-gradient(110deg, rgba(3, 12, 31, .87), rgba(3, 12, 31, .62)),
+    url("https://images-assets.nasa.gov/image/s41-s-100/s41-s-100~large.jpg") center 35% / cover fixed;
+}
+
+.quiz-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px max(5vw, 22px);
+  border-bottom: 1px solid rgba(145, 197, 255, .18);
+  background: rgba(3, 12, 31, .48);
+  backdrop-filter: blur(12px);
+}
+
+.quiz-brand {
+  font-size: .82rem;
+  font-weight: 850;
+  letter-spacing: .14em;
+}
+
+.quiz-brand span {
+  color: #68aaff;
+}
+
+.quiz-home {
+  color: #c8d8f0;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.quiz-main {
+  width: min(100% - 32px, 900px);
+  margin: 0 auto;
+  padding: clamp(38px, 7vh, 72px) 0 64px;
+}
+
+.quiz-intro {
+  margin-bottom: 28px;
+}
+
+.quiz-kicker {
+  color: #91c5ff;
+  font-size: .75rem;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.quiz-intro h1 {
+  margin: 12px 0;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: .98;
+  letter-spacing: -.06em;
+}
+
+.quiz-intro p {
+  max-width: 590px;
+  color: #c8d8f0;
+  font-size: 1.05rem;
+}
+
+.quiz-panel,
+.quiz-result {
+  padding: clamp(22px, 5vw, 42px);
+  border: 1px solid rgba(145, 197, 255, .3);
+  border-radius: 24px;
+  background: rgba(4, 17, 42, .88);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+  backdrop-filter: blur(14px);
+}
+
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: #c8d8f0;
+  font-size: .9rem;
+  font-weight: 750;
+}
+
+.star-count {
+  color: #91c5ff;
+}
+
+.star-meter {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 28px;
+  color: rgba(145, 197, 255, .28);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.star-meter .earned {
+  color: #fff;
+  text-shadow: 0 0 14px rgba(104, 170, 255, .95);
+}
+
+.quiz-panel h2 {
+  margin: 0 0 20px;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.25;
+}
+
+.quiz-answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.quiz-answer {
+  min-height: 58px;
+  padding: 14px 18px;
+  border: 1px solid rgba(145, 197, 255, .32);
+  border-radius: 14px;
+  background: rgba(11, 61, 145, .2);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.quiz-answer:hover:not(:disabled) {
+  border-color: #91c5ff;
+  background: rgba(11, 61, 145, .42);
+  transform: translateY(-2px);
+}
+
+.quiz-answer:disabled {
+  cursor: default;
+}
+
+.quiz-answer.correct {
+  border-color: #68d6ff;
+  background: rgba(11, 115, 160, .42);
+}
+
+.quiz-answer.wrong {
+  border-color: #ff8c9c;
+  background: rgba(130, 35, 57, .38);
+}
+
+.quiz-answer:focus-visible,
+.quiz-next:focus-visible,
+.quiz-retry:focus-visible,
+.quiz-home:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.quiz-feedback {
+  min-height: 3em;
+  margin: 20px 0 12px;
+  color: #dbe8f9;
+}
+
+.quiz-next,
+.quiz-retry {
+  margin-top: 6px;
+}
+
+.quiz-result {
+  text-align: center;
+}
+
+.result-stars {
+  margin: 0 0 12px;
+  color: #91c5ff;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  letter-spacing: .12em;
+  text-shadow: 0 0 18px rgba(104, 170, 255, .8);
+}
+
+.quiz-result h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.quiz-result p {
+  color: #c8d8f0;
+}
+
+.quiz-result-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.quiz-result-actions a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.quiz-result[hidden],
+.quiz-panel[hidden],
+.quiz-result-actions [hidden] {
+  display: none;
+}
+
+.quiz-page a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  body.quiz-page {
+    background-attachment: scroll;
+  }
+
+  .quiz-topbar {
+    padding: 18px;
+  }
+
+  .quiz-answers {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+<body class="quiz-page">
+<header class="quiz-topbar">
+  <a class="quiz-brand" href="index.html">BEYOND <span>/</span> THE MISSION</a>
+  <a class="quiz-home" href="home.html">← Mission control</a>
+</header>
+<main class="quiz-main">
+  <section class="quiz-intro" aria-labelledby="quizTitle">
+    <div class="quiz-kicker">Mission debrief · Moon &amp; Mars</div>
+    <h1 id="quizTitle">Space mission quiz</h1>
+    <p>Answer five questions about the worlds you explored. Earn one star for every correct answer and aim for a five-star mission.</p>
+  </section>
+
+  <section class="quiz-panel" id="quizPanel" aria-labelledby="question">
+    <div class="quiz-meta">
+      <span id="questionCounter" aria-live="polite">Question 1 of 5</span>
+      <span class="star-count" id="starCount" aria-live="polite">0 / 5 stars</span>
     </div>
-</section>
+    <div class="star-meter" id="starMeter" role="img" aria-label="0 of 5 stars collected">
+      <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+    </div>
+    <h2 id="question"></h2>
+    <div class="quiz-answers" id="answers"></div>
+    <p class="quiz-feedback" id="feedback" aria-live="polite"></p>
+    <button class="primary quiz-next" id="next" type="button" hidden>Next question →</button>
+  </section>
+
+  <section class="quiz-result" id="quizResult" aria-labelledby="resultTitle" aria-live="polite" hidden>
+    <p class="result-stars" id="resultStars" aria-hidden="true"></p>
+    <h2 id="resultTitle" tabindex="-1"></h2>
+    <p id="resultMessage"></p>
+    <div class="quiz-result-actions">
+      <button class="primary quiz-retry" id="retry" type="button">Retry mission ↻</button>
+      <a class="secondary" id="resultHome" href="home.html" hidden>Return home ↗</a>
+    </div>
+  </section>
+</main>
+<script src="quiz-data.js"></script>
 <script>
+const questions = window.missionQuizQuestions;
+const quizPanel = document.getElementById("quizPanel");
+const quizResult = document.getElementById("quizResult");
+const questionCounter = document.getElementById("questionCounter");
+const questionElement = document.getElementById("question");
+const answers = document.getElementById("answers");
+const feedback = document.getElementById("feedback");
+const starCount = document.getElementById("starCount");
+const starMeter = document.getElementById("starMeter");
+const stars = [...starMeter.querySelectorAll("span")];
+const nextButton = document.getElementById("next");
+const retryButton = document.getElementById("retry");
+const resultHome = document.getElementById("resultHome");
+let questionIndex = 0;
+let score = 0;
+let answered = false;
 
-    document.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => {
-        document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
-        b.classList.add("active");
-        activeFilter = b.dataset.filter;
-        renderCards();
-    }));
+function updateStars() {
+  stars.forEach((star, index) => star.classList.toggle("earned", index < score));
+  starCount.textContent = `${score} / ${questions.length} stars`;
+  starMeter.setAttribute("aria-label", `${score} of ${questions.length} stars collected`);
+}
 
-    document.getElementById("search").addEventListener("input", renderCards);
+function showQuestion() {
+  const currentQuestion = questions[questionIndex];
+  questionCounter.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
+  questionElement.textContent = currentQuestion.q;
+  answers.replaceChildren(...currentQuestion.a.map((answer) => {
+    const button = document.createElement("button");
+    button.className = "quiz-answer";
+    button.type = "button";
+    button.dataset.answer = answer;
+    button.textContent = answer;
+    return button;
+  }));
+  feedback.textContent = "";
+  nextButton.hidden = true;
+  nextButton.textContent = questionIndex === questions.length - 1 ? "See mission score" : "Next question →";
+  answered = false;
+}
 
-    cards.addEventListener("click", e => {
-        const c = e.target.closest(".card");
-        if (c) openMission(c.dataset.id);
-    });
+function showResult() {
+  quizPanel.hidden = true;
+  quizResult.hidden = false;
+  document.getElementById("resultStars").textContent = "★".repeat(score) + "☆".repeat(questions.length - score);
+  document.getElementById("resultTitle").textContent = score === questions.length ? "5-Star Mission!" : `${score}-Star Mission`;
+  document.getElementById("resultMessage").textContent = score === questions.length
+    ? "Perfect score! You answered every question correctly."
+    : `You collected ${score} of ${questions.length} stars. Retry the mission to aim for five!`;
+  retryButton.hidden = score === questions.length;
+  resultHome.hidden = score !== questions.length;
+  document.getElementById("resultTitle").focus();
+}
 
-    cards.addEventListener("keydown", e => {
-        if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("card")) {
-            e.preventDefault();
-            openMission(e.target.dataset.id);
-        }
-    });
+answers.addEventListener("click", (event) => {
+  const selected = event.target.closest(".quiz-answer");
+  if (!selected || answered) return;
 
-    document.getElementById("close").addEventListener("click", closeModal);
+  answered = true;
+  const currentQuestion = questions[questionIndex];
+  const correct = selected.dataset.answer === currentQuestion.correct;
+  if (correct) score++;
 
-    document.getElementById("modal").addEventListener("click", e => {
-        if (e.target.id === "modal") closeModal();
-    });
+  answers.querySelectorAll(".quiz-answer").forEach((button) => {
+    if (button.dataset.answer === currentQuestion.correct) button.classList.add("correct");
+    else if (button === selected) button.classList.add("wrong");
+    button.disabled = true;
+  });
 
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape") closeModal();
-    });
+  feedback.textContent = `${correct ? "Correct! " : "Not quite. "}${currentQuestion.why}`;
+  updateStars();
+  nextButton.hidden = false;
+});
 
-    document.getElementById("menu").addEventListener("click", () => {
-        document.getElementById("navlinks").classList.toggle("show");
-    });
+nextButton.addEventListener("click", () => {
+  if (questionIndex === questions.length - 1) {
+    showResult();
+    return;
+  }
+  questionIndex++;
+  showQuestion();
+});
 
-    document.querySelectorAll(".navlinks a").forEach(a => a.addEventListener("click", () => {
-        document.getElementById("navlinks").classList.remove("show");
-    }));
+retryButton.addEventListener("click", () => {
+  questionIndex = 0;
+  score = 0;
+  updateStars();
+  quizResult.hidden = true;
+  quizPanel.hidden = false;
+  showQuestion();
+});
 
-    renderCards();
-
-    const questions = [
-        { q: "Which robot was the first to drive across Mars?", a: ["Sojourner", "Curiosity", "Perseverance", "Lunokhod 1"], correct: "Sojourner", why: "Sojourner explored Mars in 1997 as part of the Pathfinder mission." },
-        { q: "What happened to the bottom half of the Apollo 11 Moon lander?", a: ["It returned to Earth", "It stayed on the Moon", "It went to Mars", "It is still flying near Earth"], correct: "It stayed on the Moon", why: "The astronauts took off in the top half. The bottom half stayed at the landing site." },
-        { q: "What did the Curiosity rover help scientists learn?", a: ["It found living things", "Mars once had water", "It went to the Moon", "It launched in 1969"], correct: "Mars once had water", why: "Curiosity found signs of an ancient watery place, not life itself." },
-        { q: "Which spacecraft flew past the giant planets and kept going?", a: ["Sojourner", "Apollo 15 rover", "Voyager 1", "Pathfinder lander"], correct: "Voyager 1", why: "Voyager 1 flew past Jupiter and Saturn, then continued farther into space." }
-    ];
-
-    let qi = 0, answered = false;
-
-    function loadQuestion() {
-        const x = questions[qi];
-        document.getElementById("question").textContent = x.q;
-        document.getElementById("answers").innerHTML = x.a.map(a => `<button class="answer" data-answer="${a}">${a}</button>`).join("");
-        document.getElementById("feedback").textContent = "";
-        document.getElementById("next").hidden = true;
-        answered = false;
-    }
-
-    document.getElementById("answers").addEventListener("click", e => {
-        const b = e.target.closest(".answer");
-        if (!b || answered) return;
-
-        answered = true;
-        const x = questions[qi];
-
-        document.querySelectorAll(".answer").forEach(a => {
-            if (a.dataset.answer === x.correct) a.classList.add("correct");
-            else if (a === b) a.classList.add("wrong");
-            a.disabled = true;
-        });
-
-        document.getElementById("feedback").textContent = (b.dataset.answer === x.correct ? "Correct! " : "Not quite. ") + x.why;
-        document.getElementById("next").hidden = false;
-        document.getElementById("next").textContent = qi === questions.length - 1 ? "Try again ↻" : "Next question →";
-    });
-
-    document.getElementById("next").addEventListener("click", () => {
-        qi = qi === questions.length - 1 ? 0 : qi + 1;
-        loadQuestion();
-    });
-
-    const guideTips = {
-        explore: "A rover is a robot that explores another world.",
-        timeline: "A mission timeline shows what happened and when.",
-        stories: "The machine's voice is make-believe; its mission facts are real.",
-        quiz: "Ready to test what you learned? Take your best guess!",
-        sources: "NASA's mission pages are a great place to learn more."
-    };
-    const guideTip = document.getElementById("guideTip");
-    const guideObserver = new IntersectionObserver(entries => {
-        const current = entries.find(entry => entry.isIntersecting);
-        if (current && guideTips[current.target.id]) guideTip.textContent = guideTips[current.target.id];
-    }, { rootMargin: "-30% 0px -55% 0px" });
-    Object.keys(guideTips).forEach(id => guideObserver.observe(document.getElementById(id)));
-
-    const ship = document.getElementById("travelingShip");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!reduceMotion.matches) {
-        let shipUpdatePending = false;
-        const updateShip = () => {
-            const pageLength = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = pageLength > 0 ? window.scrollY / pageLength : 0;
-            const x = (window.innerWidth - 72) * (.5 + .38 * Math.sin(progress * Math.PI * 2));
-            const y = window.innerHeight * (.12 + progress * .68);
-            ship.style.transform = `translate3d(${x}px,${y}px,0) rotate(${Math.sin(progress * Math.PI * 2) * 12}deg)`;
-            shipUpdatePending = false;
-        };
-        window.addEventListener("scroll", () => {
-            if (shipUpdatePending) return;
-            shipUpdatePending = true;
-            window.requestAnimationFrame(updateShip);
-        }, { passive: true });
-        window.addEventListener("resize", updateShip);
-        updateShip();
-    }
+showQuestion();
 </script>
+</body>
+</html>
