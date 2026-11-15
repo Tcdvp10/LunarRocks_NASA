@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061735">
+  <meta name="description" content="Sign in as a space agent and prepare for launch.">
+  <title>Mission Launch — Mars & Moon Explorers</title>
+  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+  <link rel="stylesheet" href="launch.css">
+  <script src="launch.js" defer></script>
+</head>
+
+<body class="launch-page">
+
+  <!-- Navigation -->
+  <nav>
+    <details class="nav-dropdown">
+      <summary aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <div class="dropdown-links">
+        <a href="moon.html">Moon</a>
+        <a href="Mars.html">Mars</a>
+        <a href="home.html">Earth</a>
+        <a href="resources.html">Resources</a>
+      </div>
+    </details>
+  </nav>
+
+  <!-- Animated starfield -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- Mission control -->
+  <main class="launch-shell" id="missionControl">
+    <section class="launch-card">
+      <div class="launch-content">
+
+        <div class="launch-brand">
+          MARS &amp; MOON <span>/</span> EXPLORERS
+        </div>
+
+        <div class="launch-kicker">
+          Mission control · Mars &amp; Moon
+        </div>
+
+        <h1>
+          Welcome,<br>
+          <em>Space Agent<span id="welcomeName"></span>.</em>
+        </h1>
+
+        <p class="launch-copy">
+          Please enter your name to check in at mission control.
+          Your Mars-and-Moon exploration mission is almost ready for launch.
+        </p>
+
+        <div class="mission-objective">
+          <strong>Mission goal</strong>
+          <span>
+            Explore Mars and the Moon, discover the equipment sent there,
+            and make it home safely.
+          </span>
+        </div>
+
+        <form class="agent-form" id="agentForm">
+
+          <label for="agentName">Space agent name</label>
+
+          <input id="agentName" name="agentName" type="text" autocomplete="given-name" maxlength="40"
+            placeholder="Enter your name" required>
+
+          <button class="launch-button" type="submit">
+            LAUNCH MISSION
+            <span aria-hidden="true">↗</span>
+          </button>
+
+        </form>
+
+        <p class="system-status">
+          <span class="status-dot"></span>
+          SPACECRAFT SYSTEMS ONLINE
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Full-screen launch and warp sequence -->
+  <section class="warp-overlay" id="warpOverlay" aria-hidden="true" hidden>
+    <!-- HYPERSPACE VIDEO -->
+    <video id="warpVideo" class="warp-video" muted playsinline loop preload="auto" aria-hidden="true">
+      <source src="Media/Warp video.mp4" type="video/mp4">
+    </video>
+    <canvas id="warpCanvas" aria-hidden="true"></canvas>
+
+    <div class="warp-vignette"></div>
+
+    <div class="warp-side-light left-light"></div>
+    <div class="warp-side-light right-light"></div>
+
+
+    <div class="warp-vignette"></div>
+
+    <div class="warp-side-light left-light"></div>
+    <div class="warp-side-light right-light"></div>
+
+    <div class="warp-content">
+
+      <p class="warp-kicker" id="warpKicker">
+        INITIATING LAUNCH SEQUENCE
+      </p>
+
+      <h2 id="warpHeading">
+        PREPARE FOR LIFTOFF
+      </h2>
+
+      <div class="countdown-container" id="countdownContainer" hidden>
+        <span class="countdown-label">JUMP IN</span>
+        <div id="countdown">10</div>
+        <span class="countdown-unit">SECONDS</span>
+      </div>
+
+      <p class="warp-message" id="warpMessage">
+        Engines starting...
+      </p>
+
+      <div class="warp-progress">
+        <div class="warp-progress-bar" id="warpProgress"></div>
+      </div>
+
+      <p class="warp-coordinates">
+        DESTINATION: LUNAR EXPLORATION BASE
+      </p>
+
+    </div>
+
+    <div class="arrival-flash" id="arrivalFlash"></div>
+
+  </section>
+
+</body>
+
+</html>

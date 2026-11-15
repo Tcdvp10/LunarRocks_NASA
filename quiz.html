@@ -1,134 +1,152 @@
-<section id="quiz">
-    <div class="quiz">
-        <div class="kicker">Test what you learned</div>
-        <h2>Your turn, space explorer.</h2>
-        <p id="question">Which robot was the first to drive across Mars?</p>
-        <div class="answers" id="answers">
-            <button class="answer" data-answer="Sojourner">Sojourner</button><button class="answer"
-                data-answer="Curiosity">Curiosity</button><button class="answer"
-                data-answer="Perseverance">Perseverance</button><button class="answer" data-answer="Lunokhod 1">Lunokhod
-                1</button>
-        </div>
-        <div class="feedback" id="feedback" aria-live="polite"></div>
-        <button class="primary quiz-next" id="next" hidden>Next question →</button>
-    </div>
-</section>
-<script>
+<!DOCTYPE html>
+<html lang="en">
 
-    document.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => {
-        document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
-        b.classList.add("active");
-        activeFilter = b.dataset.filter;
-        renderCards();
-    }));
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061735">
+  <meta name="description"
+    content="Test your knowledge of NASA's Moon and Mars missions, collect stars, and earn a mission rating.">
+  <title>Mission Quiz - Beyond the Mission</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quiz.css">
+  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+</head>
 
-    document.getElementById("search").addEventListener("input", renderCards);
+<body class="quiz-page">
+  <header class="quiz-topbar">
+    <a class="quiz-brand" href="index.html">BEYOND <span>/</span> THE MISSION</a>
+    <a class="quiz-home" href="home.html">← Mission control</a>
+  </header>
+  <main class="quiz-main">
+    <section class="quiz-intro" aria-labelledby="quizTitle">
+      <div class="quiz-kicker">Mission debrief · Moon &amp; Mars</div>
+      <h1 id="quizTitle">Space mission review</h1>
+      <p>Answer five questions about the worlds you explored. Earn one star for every correct answer and aim for a
+        five-star mission.</p>
+    </section>
 
-    cards.addEventListener("click", e => {
-        const c = e.target.closest(".card");
-        if (c) openMission(c.dataset.id);
-    });
+    <section class="quiz-panel" id="quizPanel" aria-labelledby="question">
+      <div class="quiz-meta">
+        <span id="questionCounter" aria-live="polite">Question 1 of 5</span>
+        <span class="star-count" id="starCount" aria-live="polite">0 / 5 stars</span>
+      </div>
+      <div class="star-meter" id="starMeter" role="img" aria-label="0 of 5 stars collected">
+        <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span
+          aria-hidden="true">★</span><span aria-hidden="true">★</span>
+      </div>
+      <h2 id="question"></h2>
+      <div class="quiz-answers" id="answers"></div>
+      <p class="quiz-feedback" id="feedback" aria-live="polite"></p>
+      <button class="primary quiz-next" id="next" type="button" hidden>Next question →</button>
+    </section>
 
-    cards.addEventListener("keydown", e => {
-        if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("card")) {
-            e.preventDefault();
-            openMission(e.target.dataset.id);
-        }
-    });
+    <section class="quiz-result" id="quizResult" aria-labelledby="resultTitle" aria-live="polite" hidden>
+      <p class="result-stars" id="resultStars" aria-hidden="true"></p>
+      <h2 id="resultTitle" tabindex="-1"></h2>
+      <p id="resultMessage"></p>
+      <div class="quiz-result-actions">
+        <button class="primary quiz-retry" id="retry" type="button">Retry mission ↻</button>
+        <a class="secondary" id="resultHome" href="home.html" hidden>Return home ↗</a>
+      </div>
+    </section>
+  </main>
+  <script src="quiz-data.js"></script>
+  <script>
+    const questions = window.missionQuizQuestions;
+    const quizPanel = document.getElementById("quizPanel");
+    const quizResult = document.getElementById("quizResult");
+    const questionCounter = document.getElementById("questionCounter");
+    const questionElement = document.getElementById("question");
+    const answers = document.getElementById("answers");
+    const feedback = document.getElementById("feedback");
+    const starCount = document.getElementById("starCount");
+    const starMeter = document.getElementById("starMeter");
+    const stars = [...starMeter.querySelectorAll("span")];
+    const nextButton = document.getElementById("next");
+    const retryButton = document.getElementById("retry");
+    const resultHome = document.getElementById("resultHome");
+    let questionIndex = 0;
+    let score = 0;
+    let answered = false;
 
-    document.getElementById("close").addEventListener("click", closeModal);
-
-    document.getElementById("modal").addEventListener("click", e => {
-        if (e.target.id === "modal") closeModal();
-    });
-
-    document.addEventListener("keydown", e => {
-        if (e.key === "Escape") closeModal();
-    });
-
-    document.getElementById("menu").addEventListener("click", () => {
-        document.getElementById("navlinks").classList.toggle("show");
-    });
-
-    document.querySelectorAll(".navlinks a").forEach(a => a.addEventListener("click", () => {
-        document.getElementById("navlinks").classList.remove("show");
-    }));
-
-    renderCards();
-
-    const questions = [
-        { q: "Which robot was the first to drive across Mars?", a: ["Sojourner", "Curiosity", "Perseverance", "Lunokhod 1"], correct: "Sojourner", why: "Sojourner explored Mars in 1997 as part of the Pathfinder mission." },
-        { q: "What happened to the bottom half of the Apollo 11 Moon lander?", a: ["It returned to Earth", "It stayed on the Moon", "It went to Mars", "It is still flying near Earth"], correct: "It stayed on the Moon", why: "The astronauts took off in the top half. The bottom half stayed at the landing site." },
-        { q: "What did the Curiosity rover help scientists learn?", a: ["It found living things", "Mars once had water", "It went to the Moon", "It launched in 1969"], correct: "Mars once had water", why: "Curiosity found signs of an ancient watery place, not life itself." },
-        { q: "Which spacecraft flew past the giant planets and kept going?", a: ["Sojourner", "Apollo 15 rover", "Voyager 1", "Pathfinder lander"], correct: "Voyager 1", why: "Voyager 1 flew past Jupiter and Saturn, then continued farther into space." }
-    ];
-
-    let qi = 0, answered = false;
-
-    function loadQuestion() {
-        const x = questions[qi];
-        document.getElementById("question").textContent = x.q;
-        document.getElementById("answers").innerHTML = x.a.map(a => `<button class="answer" data-answer="${a}">${a}</button>`).join("");
-        document.getElementById("feedback").textContent = "";
-        document.getElementById("next").hidden = true;
-        answered = false;
+    function updateStars() {
+      stars.forEach((star, index) => star.classList.toggle("earned", index < score));
+      starCount.textContent = `${score} / ${questions.length} stars`;
+      starMeter.setAttribute("aria-label", `${score} of ${questions.length} stars collected`);
     }
 
-    document.getElementById("answers").addEventListener("click", e => {
-        const b = e.target.closest(".answer");
-        if (!b || answered) return;
-
-        answered = true;
-        const x = questions[qi];
-
-        document.querySelectorAll(".answer").forEach(a => {
-            if (a.dataset.answer === x.correct) a.classList.add("correct");
-            else if (a === b) a.classList.add("wrong");
-            a.disabled = true;
-        });
-
-        document.getElementById("feedback").textContent = (b.dataset.answer === x.correct ? "Correct! " : "Not quite. ") + x.why;
-        document.getElementById("next").hidden = false;
-        document.getElementById("next").textContent = qi === questions.length - 1 ? "Try again ↻" : "Next question →";
-    });
-
-    document.getElementById("next").addEventListener("click", () => {
-        qi = qi === questions.length - 1 ? 0 : qi + 1;
-        loadQuestion();
-    });
-
-    const guideTips = {
-        explore: "A rover is a robot that explores another world.",
-        timeline: "A mission timeline shows what happened and when.",
-        stories: "The machine's voice is make-believe; its mission facts are real.",
-        quiz: "Ready to test what you learned? Take your best guess!",
-        sources: "NASA's mission pages are a great place to learn more."
-    };
-    const guideTip = document.getElementById("guideTip");
-    const guideObserver = new IntersectionObserver(entries => {
-        const current = entries.find(entry => entry.isIntersecting);
-        if (current && guideTips[current.target.id]) guideTip.textContent = guideTips[current.target.id];
-    }, { rootMargin: "-30% 0px -55% 0px" });
-    Object.keys(guideTips).forEach(id => guideObserver.observe(document.getElementById(id)));
-
-    const ship = document.getElementById("travelingShip");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!reduceMotion.matches) {
-        let shipUpdatePending = false;
-        const updateShip = () => {
-            const pageLength = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = pageLength > 0 ? window.scrollY / pageLength : 0;
-            const x = (window.innerWidth - 72) * (.5 + .38 * Math.sin(progress * Math.PI * 2));
-            const y = window.innerHeight * (.12 + progress * .68);
-            ship.style.transform = `translate3d(${x}px,${y}px,0) rotate(${Math.sin(progress * Math.PI * 2) * 12}deg)`;
-            shipUpdatePending = false;
-        };
-        window.addEventListener("scroll", () => {
-            if (shipUpdatePending) return;
-            shipUpdatePending = true;
-            window.requestAnimationFrame(updateShip);
-        }, { passive: true });
-        window.addEventListener("resize", updateShip);
-        updateShip();
+    function showQuestion() {
+      const currentQuestion = questions[questionIndex];
+      questionCounter.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
+      questionElement.textContent = currentQuestion.q;
+      answers.replaceChildren(...currentQuestion.a.map((answer) => {
+        const button = document.createElement("button");
+        button.className = "quiz-answer";
+        button.type = "button";
+        button.dataset.answer = answer;
+        button.textContent = answer;
+        return button;
+      }));
+      feedback.textContent = "";
+      nextButton.hidden = true;
+      nextButton.textContent = questionIndex === questions.length - 1 ? "See mission score" : "Next question →";
+      answered = false;
     }
-</script>
+
+    function showResult() {
+      quizPanel.hidden = true;
+      quizResult.hidden = false;
+      document.getElementById("resultStars").textContent = "★".repeat(score) + "☆".repeat(questions.length - score);
+      document.getElementById("resultTitle").textContent = score === questions.length ? "5-Star Mission!" : `${score}-Star Mission`;
+      document.getElementById("resultMessage").textContent = score === questions.length
+        ? "Perfect score! You answered every question correctly."
+        : `You collected ${score} of ${questions.length} stars. Retry the mission to aim for five!`;
+      retryButton.hidden = score === questions.length;
+      resultHome.hidden = score !== questions.length;
+      document.getElementById("resultTitle").focus();
+    }
+
+    answers.addEventListener("click", (event) => {
+      const selected = event.target.closest(".quiz-answer");
+      if (!selected || answered) return;
+
+      answered = true;
+      const currentQuestion = questions[questionIndex];
+      const correct = selected.dataset.answer === currentQuestion.correct;
+      if (correct) score++;
+
+      answers.querySelectorAll(".quiz-answer").forEach((button) => {
+        if (button.dataset.answer === currentQuestion.correct) button.classList.add("correct");
+        else if (button === selected) button.classList.add("wrong");
+        button.disabled = true;
+      });
+
+      feedback.textContent = `${correct ? "Correct! " : "Not quite. "}${currentQuestion.why}`;
+      updateStars();
+      nextButton.hidden = false;
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (questionIndex === questions.length - 1) {
+        showResult();
+        return;
+      }
+      questionIndex++;
+      showQuestion();
+    });
+
+    retryButton.addEventListener("click", () => {
+      questionIndex = 0;
+      score = 0;
+      updateStars();
+      quizResult.hidden = true;
+      quizPanel.hidden = false;
+      showQuestion();
+    });
+
+    showQuestion();
+  </script>
+</body>
+
+</html>

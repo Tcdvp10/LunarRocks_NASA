@@ -188,6 +188,7 @@ nav {
     font-size: .9rem;
     border-radius: 8px;
     transition: .25s ease;
+    text-decoration: none;
 }
 
 .dropdown-links a:hover {
@@ -486,5 +487,205 @@ h1 em {
     .primary {
         font-size: .88rem;
         padding: 12px 16px;
+    }
+}
+
+/*========================
+Responsive design for the page
+==========================*/
+
+
+/* =================================
+   ADDITIONAL RESPONSIVE IMPROVEMENTS
+================================= */
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+/* Large tablets and small laptops */
+@media (min-width: 851px) and (max-width: 1100px) {
+    .hero {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        gap: 3vw;
+    }
+
+    h1 {
+        font-size: clamp(3.2rem, 5.5vw, 5rem);
+    }
+
+    .hero-art {
+        height: 450px;
+        transform: translateY(-35px);
+    }
+}
+
+/* Tablets */
+@media (max-width: 850px) {
+    .hero {
+        width: 100%;
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+
+    .hero-content {
+        min-width: 0;
+    }
+
+    .hero-art {
+        width: 100%;
+        max-width: 100%;
+        height: clamp(280px, 55vw, 400px);
+    }
+
+    .hero-video {
+        object-fit: cover;
+    }
+
+    .dropdown-links {
+        width: min(230px, calc(100vw - 40px));
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+    nav {
+        width: 100%;
+        padding: 16px 20px;
+    }
+
+    .hero {
+        padding: 110px 20px 45px;
+        gap: 24px;
+    }
+
+    .eyebrow {
+        font-size: .68rem;
+        letter-spacing: .12em;
+    }
+
+    h1 {
+        width: 100%;
+        font-size: clamp(2.8rem, 12vw, 4.2rem);
+        line-height: .98;
+        overflow-wrap: break-word;
+    }
+
+    .hero-content p {
+        max-width: 100%;
+        font-size: .95rem;
+        line-height: 1.7;
+    }
+
+    .hero-art {
+        height: 280px;
+        min-height: 240px;
+        border-radius: 15px;
+    }
+
+    .video-caption {
+        left: 15px;
+        bottom: 15px;
+        font-size: .62rem;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .primary {
+        width: 100%;
+        white-space: normal;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+    nav {
+        padding: 14px 16px;
+    }
+
+    .brand {
+        font-size: .72rem;
+        letter-spacing: .1em;
+    }
+
+    .nav-dropdown summary {
+        width: 42px;
+        height: 40px;
+    }
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 11.5vw, 3.2rem);
+    }
+
+    .hero-art {
+        height: 240px;
+        min-height: 220px;
+    }
+
+    .hero-content p {
+        font-size: .9rem;
+    }
+}
+
+/* Landscape mobile screens */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 35px;
+    }
+
+    .hero-art {
+        height: 260px;
+        min-height: 220px;
+    }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* Hide video on mobile devices */
+@media (max-width: 850px) {
+    .hero-art {
+        display: none !important;
+    }
+}
+
+@media (max-width: 850px) {
+    .hero-art {
+        display: none !important;
+    }
+
+    .hero-video {
+        display: none !important;
     }
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061735">
+  <meta name="description"
+    content="Welcome home, Space Agent. Celebrate your successful mission exploring Mars and the Moon.">
+  <title>Welcome Home - Beyond The Mission</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+</head>
+
+<body class="home-page">
+  <main class="home-shell">
+    <section class="home-content" aria-labelledby="homeTitle">
+      <div class="home-brand">BEYOND <span>/</span> THE MISSION</div>
+      <div class="home-kicker">Mission control · Earth</div>
+      <h1 id="homeTitle">Welcome back home,<br><em id="homeAgentGreeting">Space Agent!</em></h1>
+      <p class="home-copy">Congratulations on your successful mission back to planet Earth! You explored Mars and the
+        Moon, discovered the equipment sent there, and made it home safely.</p>
+      <p class="home-question">Would you like to tell us about your mission?</p>
+      <div class="home-actions">
+        <a class="primary" href="quiz.html">Yes, take me to the quiz ↗</a>
+        <!-- Resources currently live on the main page; replace this link if a dedicated resource page is added. -->
+        <a class="secondary" href="resources.html">No, show me resources</a>
+      </div>
+      <p class="home-credit">Landing photo: <a href="https://images.nasa.gov/details/S84-27717" target="_blank"
+          rel="noopener noreferrer">NASA · Space Shuttle Challenger touchdown (STS-41B)</a></p>
+    </section>
+  </main>
+  <script>
+    const storedAgentName = localStorage.getItem("spaceAgentName");
+    if (storedAgentName) {
+      const name = storedAgentName.trim().slice(0, 40);
+      if (name) document.getElementById("homeAgentGreeting").textContent = `Space Agent ${name}!`;
+      localStorage.removeItem("spaceAgentName");
+    }
+  </script>
+</body>
+
+</html>
