@@ -8,84 +8,15 @@
     <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
     <title>Welcome to the Moon</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            margin: 0;
-            display: grid;
-            place-items: center;
-            padding: 25px;
-            background:
-                linear-gradient(rgba(2, 8, 23, .55), rgba(2, 8, 23, .85)),
-                url("https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~large.jpg") center / cover fixed;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .arrival {
-            max-width: 700px;
-            padding: 35px;
-            background: rgba(3, 12, 31, .7);
-            border: 1px solid rgba(104, 170, 255, .4);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-        }
-
-        .arrival h1 {
-            color: #68aaff;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-        }
-
-        .arrival p {
-            color: #c8d8f0;
-            line-height: 1.7;
-        }
-
-        .explore-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-            padding: 16px 35px;
-            border-radius: 50px;
-            border: 1px solid #68aaff;
-
-            background: linear-gradient(110deg, #0b3d91, #2476d8);
-
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-
-            box-shadow: 0 0 25px rgba(104, 170, 255, 0.3);
-
-            transition: all 0.3s ease;
-        }
-
-        .explore-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 35px rgba(104, 170, 255, 0.7);
-            background: linear-gradient(110deg, #2476d8, #4295ff);
-        }
-
-        .explore-button span {
-            font-size: 1.3rem;
-        }
-    </style>
+    <link rel="stylesheet" href="moon_arrival_styles.css">
+    <script src="moon_arrival_script.js" defer></script>
 </head>
 
 <body>
 
     <main class="arrival">
 
-        <p>MISSION COMPLETE · LUNAR BASE</p>
+        <p class="arrival-kicker">MISSION COMPLETE · LUNAR BASE</p>
 
         <h1>Welcome to the Moon.</h1>
 
@@ -96,24 +27,27 @@
             Explore the Moon, discover the equipment,
             and complete your lunar mission.
         </p>
-        <a href="moon.html" class="explore-button">
+
+        <ul class="checklist" id="checklist" aria-label="Landing checks">
+            <li>Landing gear locked</li>
+            <li>Space suit pressure steady</li>
+            <li>Lunar base link online</li>
+        </ul>
+
+        <p class="check-status" id="checkStatus" aria-live="polite">All systems go. You are cleared to explore.</p>
+
+        <div class="briefing">
+            <div><strong>4</strong><span>spacecraft to find</span></div>
+            <div><strong>1967–1971</strong><span>years to travel through</span></div>
+            <div><strong>Mars</strong><span>your next stop</span></div>
+        </div>
+
+        <a href="moon.html" class="explore-button" id="exploreButton">
             BEGIN EXPLORING
             <span aria-hidden="true">→</span>
         </a>
     </main>
 
-    <script>
-        const name = localStorage.getItem("spaceAgentName");
-
-        const welcome = document.getElementById("agentWelcome");
-
-        if (name) {
-            welcome.textContent = `Welcome, Space Agent ${name}!`;
-        }
-    </script>
-
 </body>
-
-</html>
 
 </html>

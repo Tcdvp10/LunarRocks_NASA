@@ -89,7 +89,8 @@ body.quiz-page {
 
 .star-meter {
     display: flex;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 6px;
     margin: 14px 0 28px;
     color: rgba(145, 197, 255, .28);
     font-size: 1.55rem;
@@ -173,8 +174,9 @@ body.quiz-page {
 .result-stars {
     margin: 0 0 12px;
     color: #91c5ff;
-    font-size: clamp(2rem, 7vw, 3.2rem);
-    letter-spacing: .12em;
+    font-size: clamp(1.3rem, 5vw, 3rem);
+    letter-spacing: .08em;
+    overflow-wrap: anywhere;
     text-shadow: 0 0 18px rgba(104, 170, 255, .8);
 }
 

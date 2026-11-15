@@ -1,0 +1,323 @@
+/* =====================================
+   MOON -> MARS TRANSIT PAGE
+   Same dark "mission control" look as launch.css,
+   with the Space Apps reds added because we are heading to Mars.
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --deep-blue: #07173F;
+    --deep-space: #020817;
+    --bright-blue: #68aaff;
+    --rocket-red: #E43700;
+    --martian-red: #8E1100;
+    --neon-yellow: #EAFE07;
+    --white: #ffffff;
+    --muted: #c8d8f0;
+
+    /* Size of the rocket picture on the track */
+    --rocket-height: 150px;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body.transit-page {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 20% -10%, rgba(228, 55, 0, .5), transparent 55%),
+        linear-gradient(180deg, #2a0a14, var(--deep-blue) 55%, var(--deep-space));
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================
+   STARFIELD
+===================================== */
+
+#starfield {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* =====================================
+   LAYOUT
+===================================== */
+
+.transit-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: clamp(16px, 4vw, 48px);
+}
+
+.transit-card {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: clamp(20px, 5vw, 56px);
+    align-items: center;
+    width: min(100%, 860px);
+    padding: clamp(22px, 5vw, 52px);
+    border: 1px solid rgba(104, 170, 255, .3);
+    border-radius: 24px;
+    background: rgba(3, 12, 31, .72);
+    backdrop-filter: blur(12px);
+}
+
+/* =====================================
+   FLIGHT PATH (rocket progress)
+   The script sets --progress from 0 to 1.
+===================================== */
+
+.flight {
+    --progress: 0;
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+}
+
+.planet {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.planet span {
+    display: block;
+    border-radius: 50%;
+}
+
+.planet-mars span {
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle at 35% 30%, #ff8a5c, var(--rocket-red) 45%, var(--martian-red));
+    box-shadow: 0 0 28px rgba(228, 55, 0, .6);
+}
+
+.planet-moon span {
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #b8c2d4 55%, #7c879b);
+}
+
+.track {
+    position: relative;
+    width: 64px;
+    height: clamp(320px, 52vh, 440px);
+}
+
+/* The faint line the rocket follows */
+.track::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    margin-left: -2px;
+    border-radius: 2px;
+    background: rgba(200, 216, 240, .2);
+}
+
+/* The yellow part of the line that is already travelled */
+.track-fill {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: calc(var(--progress) * 100%);
+    margin-left: -2px;
+    border-radius: 2px;
+    background: var(--neon-yellow);
+    box-shadow: 0 0 14px rgba(234, 254, 7, .7);
+    transition: height 1.8s cubic-bezier(.6, 0, .3, 1);
+}
+
+/* rocket.jpg, zoomed in so only the rocket and its flames show */
+.rocket {
+    position: absolute;
+    left: 50%;
+    bottom: calc(var(--progress) * (100% - var(--rocket-height)));
+    width: 60px;
+    height: var(--rocket-height);
+    margin-left: -30px;
+    border: 2px solid var(--white);
+    border-radius: 30px;
+    background: url("rocket.jpg") center -92px / 200px 300px no-repeat;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+    transition: bottom 1.8s cubic-bezier(.6, 0, .3, 1);
+}
+
+/* Small shake while the engines are burning */
+.flight.is-moving .rocket {
+    animation: rocket-shake .12s linear infinite alternate;
+}
+
+@keyframes rocket-shake {
+    from {
+        transform: translateX(-1px);
+    }
+
+    to {
+        transform: translateX(1px);
+    }
+}
+
+/* =====================================
+   TEXT READOUT
+===================================== */
+
+.transit-brand {
+    color: var(--muted);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.transit-brand span {
+    color: var(--rocket-red);
+}
+
+.transit-kicker {
+    margin: 28px 0 0;
+    color: var(--bright-blue);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.readout h1 {
+    margin: 12px 0;
+    font-size: clamp(1.7rem, 4.6vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: .04em;
+}
+
+.transit-message {
+    min-height: 3.2em;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.percent {
+    margin: 10px 0 0;
+    color: var(--neon-yellow);
+    font-size: clamp(3rem, 9vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Checklist of stages: grey, then blue while active, then yellow when done */
+.stages {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.stages li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #7f93b3;
+    font-size: .85rem;
+    font-weight: 700;
+    transition: color .4s ease;
+}
+
+.stages li::before {
+    content: "";
+    flex: 0 0 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(200, 216, 240, .25);
+    transition: background .4s ease, box-shadow .4s ease;
+}
+
+.stages li.is-active {
+    color: var(--white);
+}
+
+.stages li.is-active::before {
+    background: var(--bright-blue);
+    box-shadow: 0 0 12px var(--bright-blue);
+}
+
+.stages li.is-done {
+    color: var(--muted);
+}
+
+.stages li.is-done::before {
+    background: var(--neon-yellow);
+}
+
+.skip-link {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 0;
+    color: var(--muted);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.skip-link:hover {
+    color: var(--white);
+}
+
+.skip-link:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 4px;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+    .transit-card {
+        grid-template-columns: 84px minmax(0, 1fr);
+    }
+
+    .transit-kicker {
+        margin-top: 18px;
+    }
+}
+
+/* =====================================
+   REDUCED MOTION
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .track-fill,
+    .rocket,
+    .stages li,
+    .stages li::before {
+        transition: none;
+    }
+
+    .flight.is-moving .rocket {
+        animation: none;
+    }
+}

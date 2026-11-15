@@ -1,3 +1,4 @@
+Moon · HTML
 <!--This is the moon webpage-->
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale = 1">
     <title> MOON </title>
     <link href="moon_styles.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
 </head>
 
 <body>
@@ -18,11 +18,11 @@
                 <span></span><span></span><span></span>
             </summary>
             <nav aria-label="Site menu">
+                <a href="index.html">Homepage</a>
                 <a href="moon.html">Moon</a>
                 <a href="Mars.html">Mars</a>
-                <a href="#Quiz">Quiz</a>
-                <a href="#Resources">Resources</a>
-                <a href="#Return-Home">Return Home</a>
+                <a href="home.html">Earth</a>
+                <a href="resources.html">Resources</a>
             </nav>
         </details>
     </header>
@@ -31,6 +31,7 @@
         <section class="intro">
             <p class="eyebrow"> Lunar Rocks </p>
             <h1> Mission to the Moon </h1>
+            <p class="agent-greeting" id="agentGreeting" hidden></p>
 
             <div class="intro-bar">
                 <nav class="year-nav" aria-label="Jump to year">
@@ -158,10 +159,18 @@
 
         </ol>
 
+        <section class="next-stop" aria-labelledby="nextStopTitle">
+            <p class="eyebrow">Next stop</p>
+            <h2 id="nextStopTitle">Ready for Mars?</h2>
+            <p class="explored" id="explored" aria-live="polite" hidden></p>
+            <a class="mars-button" id="marsButton" href="mars_arrival.html">Launch to Mars <span
+                    aria-hidden="true">→</span></a>
+        </section>
+
     </main>
 
     <footer class="site-footer">
-        <img class="footer-logo" src="Space_Apps_Logo_Black.png" alt="NASA Space Apps Challenge">
+        <img class="footer-logo" src="Space Apps Logo Black.png" alt="NASA Space Apps Challenge">
         <span class="dot" aria-hidden="true"></span>
         <span class="footer-label">Lunar Rocks</span>
     </footer>

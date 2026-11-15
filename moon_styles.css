@@ -416,6 +416,102 @@ a:hover {
     color: var(--deep-blue);
 }
 
+/*------------------------ Next stop -------------------------*/
+.agent-greeting {
+    margin: 12px 0 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--electric-blue);
+}
+
+.year-nav a.is-active {
+    background: var(--deep-blue);
+    border-color: var(--deep-blue);
+    color: var(--neon-yellow);
+}
+
+.js .card {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.js .card.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.year {
+    transition: transform .3s ease, background .3s ease;
+}
+
+.mission.is-current .year {
+    transform: scale(1.15);
+}
+
+.next-stop {
+    max-width: calc(var(--page-width) - 80px);
+    margin: 0 auto 96px;
+    padding: 56px 32px;
+    border-radius: 20px;
+    background: var(--deep-blue);
+    color: var(--white);
+    text-align: center;
+}
+
+.next-stop .eyebrow {
+    color: var(--neon-yellow);
+}
+
+.next-stop h2 {
+    margin: 0 0 12px;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+}
+
+.explored {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.mars-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    margin-top: 16px;
+    padding: 0 32px;
+    border-radius: 999px;
+    background: var(--neon-yellow);
+    color: var(--deep-blue);
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.mars-button:hover {
+    background: var(--white);
+    color: var(--deep-blue);
+    transform: translateY(-3px);
+}
+
+.mars-button.is-ready {
+    box-shadow: 0 0 0 6px rgba(234, 254, 7, .25), 0 0 40px rgba(234, 254, 7, .45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js .card,
+    .year,
+    .mars-button {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
 /*------------------------ Footer -------------------------*/
 .site-footer {
     background: var(--neon-yellow);
@@ -490,6 +586,11 @@ a:hover {
         margin-top: 58px;
         margin-left: 32px;
         margin-right: 0;
+    }
+
+    .next-stop {
+        margin: 0 20px 64px;
+        padding: 40px 20px;
     }
 
     .site-footer {

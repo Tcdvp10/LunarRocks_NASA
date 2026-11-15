@@ -1,0 +1,219 @@
+/*
+This page defines the styling for the moon arrival page
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    padding: 25px;
+    background:
+        linear-gradient(rgba(2, 8, 23, .55), rgba(2, 8, 23, .85)),
+        url("https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~large.jpg") center / cover fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.arrival {
+    max-width: 700px;
+    padding: 35px;
+    background: rgba(3, 12, 31, .7);
+    border: 1px solid rgba(104, 170, 255, .4);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    animation: touchdown .9s ease-out both;
+}
+
+@keyframes touchdown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.arrival h1 {
+    margin: 10px 0;
+    color: #68aaff;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+}
+
+.arrival p {
+    color: #c8d8f0;
+    line-height: 1.7;
+}
+
+.arrival-kicker {
+    margin: 0;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.checklist {
+    list-style: none;
+    margin: 25px auto 0;
+    padding: 0;
+    max-width: 340px;
+    display: grid;
+    gap: 10px;
+    text-align: left;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(82, 230, 162, .5);
+    border-radius: 10px;
+    background: rgba(82, 230, 162, .1);
+    color: white;
+    font-size: .95rem;
+    font-weight: 700;
+    transition: border-color .4s ease, background .4s ease, color .4s ease;
+}
+
+.checklist li::before {
+    content: "✓";
+    display: grid;
+    place-items: center;
+    flex: 0 0 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #52e6a2;
+    color: #03101f;
+    font-size: .85rem;
+    transition: background .4s ease;
+}
+
+.checklist li.pending {
+    border-color: rgba(104, 170, 255, .25);
+    background: rgba(104, 170, 255, .06);
+    color: #8daed8;
+}
+
+.checklist li.pending::before {
+    content: "";
+    background: rgba(104, 170, 255, .25);
+}
+
+.check-status {
+    min-height: 1.7em;
+    margin: 14px 0 0;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.briefing {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.briefing div {
+    padding: 14px 8px;
+    border: 1px solid rgba(104, 170, 255, .3);
+    border-radius: 12px;
+    background: rgba(104, 170, 255, .08);
+}
+
+.briefing strong {
+    display: block;
+    color: #68aaff;
+    font-size: 1.5rem;
+}
+
+.briefing span {
+    color: #c8d8f0;
+    font-size: .8rem;
+}
+
+.explore-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding: 16px 35px;
+    border-radius: 50px;
+    border: 1px solid #68aaff;
+
+    background: linear-gradient(110deg, #0b3d91, #2476d8);
+
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+
+    box-shadow: 0 0 25px rgba(104, 170, 255, 0.3);
+
+    transition: all 0.3s ease;
+}
+
+.explore-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(104, 170, 255, 0.7);
+    background: linear-gradient(110deg, #2476d8, #4295ff);
+}
+
+.explore-button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+.explore-button.ready {
+    animation: ready-glow 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes ready-glow {
+    from {
+        box-shadow: 0 0 20px rgba(104, 170, 255, .4);
+    }
+
+    to {
+        box-shadow: 0 0 45px rgba(104, 170, 255, .95);
+    }
+}
+
+.explore-button span {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 520px) {
+    .arrival {
+        padding: 24px 18px;
+    }
+
+    .briefing {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .arrival,
+    .explore-button.ready {
+        animation: none;
+    }
+
+    .checklist li,
+    .checklist li::before,
+    .explore-button {
+        transition: none;
+    }
+}

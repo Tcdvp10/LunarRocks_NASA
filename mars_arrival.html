@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07173F">
+    <meta name="description" content="Travel from the Moon to Mars.">
+    <title>Journey to Mars — Beyond the Mission</title>
+    <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+    <link rel="stylesheet" href="mars_arrival_styles.css">
+    <script src="mars_arrival_script.js" defer></script>
+</head>
+
+<body class="transit-page">
+
+    <!-- Animated starfield (same idea as launch.html) -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <main class="transit-shell">
+        <section class="transit-card">
+
+            <!-- Left: the rocket climbs this track from the Moon up to Mars -->
+            <div class="flight" id="flight" role="progressbar" aria-label="Journey to Mars" aria-valuemin="0"
+                aria-valuemax="100" aria-valuenow="0">
+                <div class="planet planet-mars"><span aria-hidden="true"></span>Mars</div>
+                <div class="track">
+                    <div class="track-fill"></div>
+                    <div class="rocket" id="rocket" aria-hidden="true"></div>
+                </div>
+                <div class="planet planet-moon"><span aria-hidden="true"></span>Moon</div>
+            </div>
+
+            <!-- Right: text that changes at every stage -->
+            <div class="readout">
+                <div class="transit-brand">BEYOND <span>/</span> THE MISSION</div>
+
+                <div aria-live="polite">
+                    <p class="transit-kicker" id="kicker">LEAVING LUNAR BASE</p>
+                    <h1 id="heading">GETTING READY FOR MARS</h1>
+                    <p class="transit-message" id="message">Loading Moon rocks and checking the engines...</p>
+                </div>
+
+                <p class="percent"><span id="percent">0</span>%</p>
+
+                <ol class="stages" id="stages">
+                    <li>Pre-flight checks</li>
+                    <li>Liftoff from the Moon</li>
+                    <li>Deep space cruise</li>
+                    <li>Mars approach</li>
+                    <li>Touchdown</li>
+                </ol>
+
+                <a class="skip-link" href="Mars.html">Skip the journey <span aria-hidden="true">→</span></a>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>
