@@ -11,6 +11,22 @@
 </head>
 
 <body class="mars-page" data-theme="dark">
+  <nav>
+    <details class="nav-dropdown">
+      <summary aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <div class="dropdown-links">
+        <a href="moon.html">Moon</a>
+        <a href="Mars.html">Mars</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="#Resources">Resources</a>
+      </div>
+    </details>
+  </nav>
   <main id="timeline">
     <div class="page-toolbar">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">Light mode</button>
@@ -129,15 +145,7 @@
       </li>
     </ol>
   </main>
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("click", () => {
-      const theme = document.body.dataset.theme === "dark" ? "light" : "dark";
-      document.body.dataset.theme = theme;
-      themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
-      themeToggle.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} mode`);
-    });
-  </script>
+  <script src="Mars.js"></script>
 </body>
 
 </html>

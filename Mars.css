@@ -24,10 +24,128 @@
         --mars-line: rgba(107, 48, 25, .4);
         --mars-active: #176c4b;
         --mars-ended: #9c3d1c;
-        background-color: var(--mars-bg);
-        background-image:
-            linear-gradient(180deg, rgba(247, 215, 187, .77), rgba(239, 207, 177, .91) 58%, #f1d7bc 100%),
-            url("https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg");
+        background:
+            linear-gradient(180deg,
+                rgba(247, 215, 187, .77),
+                rgba(239, 207, 177, .91) 58%,
+                #f1d7bc 100%),
+            url("https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg") center top / cover fixed;
+
+        color: var(--mars-text);
+    }
+
+    /* =================================
+   NAVIGATION
+================================= */
+
+    nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 25px max(5vw, 22px);
+        background: transparent;
+    }
+
+    /* Dropdown menu */
+
+    .nav-dropdown {
+        position: relative;
+        z-index: 30;
+    }
+
+    .nav-dropdown summary {
+        list-style: none;
+        cursor: pointer;
+        width: 48px;
+        height: 43px;
+        border: 1px solid var(--mars-line);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        background: var(--mars-panel);
+        box-shadow: 0 0 18px rgba(0, 0, 0, .08);
+        transition: .3s ease;
+    }
+
+    .nav-dropdown summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .nav-dropdown summary:hover,
+    .nav-dropdown[open] summary {
+        background: var(--mars-bg);
+        border-color: var(--mars-accent);
+        box-shadow: 0 0 20px var(--mars-line);
+    }
+
+    .nav-dropdown summary span {
+        display: block;
+        width: 19px;
+        height: 2px;
+        border-radius: 5px;
+        background: var(--mars-accent);
+        transition: .3s ease;
+    }
+
+    /* Hamburger animation */
+
+    .nav-dropdown[open] summary span:first-child {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-dropdown[open] summary span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-dropdown[open] summary span:last-child {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Dropdown links */
+
+    .dropdown-links {
+        position: absolute;
+        top: 57px;
+        right: 0;
+        width: 210px;
+        padding: 12px;
+        background: var(--mars-panel);
+        border: 1px solid var(--mars-line);
+        border-radius: 15px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .2);
+        display: grid;
+        gap: 4px;
+    }
+
+    .dropdown-links a {
+        padding: 11px 13px;
+        color: var(--mars-text);
+        font-size: .9rem;
+        border-radius: 8px;
+        transition: .25s ease;
+    }
+
+    .dropdown-links a:hover {
+        color: var(--mars-accent);
+        background: var(--mars-line);
+        padding-left: 19px;
+    }
+
+    /* Mobile positioning */
+
+    @media (max-width: 600px) {
+        nav {
+            padding: 20px;
+        }
     }
 
     .mars-page main {
@@ -40,6 +158,9 @@
         display: flex;
         justify-content: flex-end;
         margin-bottom: 24px;
+        position: relative;
+        z-index: 40;
+
     }
 
     .theme-toggle {
@@ -52,6 +173,10 @@
         font-size: .82rem;
         font-weight: 750;
         cursor: pointer;
+        position: relative;
+        z-index: 41;
+        display: inline-block;
+        pointer-events: auto;
     }
 
     .theme-toggle:hover {
