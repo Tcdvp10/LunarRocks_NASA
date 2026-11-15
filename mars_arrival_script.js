@@ -1,7 +1,7 @@
 /* =====================================
    MOON -> MARS TRANSIT
-   The rocket moves in steps: it waits, jumps to 20%,
-   waits again, jumps to 60%, and so on until 100%.
+   The rocket flies smoothly from 0% to 100% without stopping.
+   The text changes as it passes each stage.
    Then the page opens Mars.html.
 ===================================== */
 
@@ -27,44 +27,40 @@ const ctx = canvas.getContext("2d");
 
 const DESTINATION = "Mars.html";
 
-// How long the rocket takes to move between two stops.
-// Keep this the same as the 1.8s transition in mars_arrival_styles.css.
-const TRAVEL_TIME = 1800;
+// How long the whole trip takes, in milliseconds.
+const JOURNEY_TIME = 6000;
 
-// Each stage: where the rocket stops (percent), how long it
-// stays there (hold, in milliseconds) and the text to show.
+// How long to stay on "WELCOME TO MARS" before opening Mars.html.
+const ARRIVAL_PAUSE = 1800;
+
+// Each stage starts when the rocket reaches its percent.
 const STAGES = [
     {
         percent: 0,
-        hold: 2500,
         kicker: "LEAVING LUNAR BASE",
         heading: "GETTING READY FOR MARS",
         message: "Loading Moon rocks and checking the engines..."
     },
     {
         percent: 20,
-        hold: 2500,
         kicker: "ENGINE STATUS",
         heading: "LIFTOFF FROM THE MOON",
         message: "Goodbye, Moon! Climbing away from the surface..."
     },
     {
         percent: 60,
-        hold: 3000,
         kicker: "DEEP SPACE",
         heading: "CRUISING TO MARS",
         message: "More than halfway there. The red planet is getting bigger..."
     },
     {
         percent: 85,
-        hold: 2500,
         kicker: "DESTINATION IN SIGHT",
         heading: "APPROACHING MARS",
         message: "Slowing down and getting ready to land..."
     },
     {
         percent: 100,
-        hold: 1800,
         kicker: "MISSION DESTINATION REACHED",
         heading: "WELCOME TO MARS",
         message: "Touchdown confirmed. Opening the hatch..."
@@ -81,7 +77,7 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 let stars = [];
 let starSpeed = 0.2;
-let shownPercent = 0;
+let currentStage = -1;
 
 
 /* =====================================
@@ -178,35 +174,13 @@ if (!reducedMotion) {
 
 
 /* =====================================
-   PERCENT COUNTER
-   Counts the big number up smoothly, e.g. 20 -> 60.
-===================================== */
-
-function countTo(target, duration) {
-    const start = shownPercent;
-    const startTime = performance.now();
-
-    function step(now) {
-        const progress = Math.min(1, (now - startTime) / duration);
-
-        shownPercent = Math.round(start + (target - start) * progress);
-        percent.textContent = shownPercent;
-
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-
-    requestAnimationFrame(step);
-}
-
-
-/* =====================================
-   SHOW ONE STAGE
+   SHOW ONE STAGE (text and checklist only)
 ===================================== */
 
 function showStage(index) {
     const stage = STAGES[index];
+
+    currentStage = index;
 
     kicker.textContent = agentName
         ? `AGENT ${agentName.toUpperCase()} · ${stage.kicker}`
@@ -215,11 +189,6 @@ function showStage(index) {
     heading.textContent = stage.heading;
     message.textContent = stage.message;
 
-    // Move the rocket and the yellow line (see .flight in the CSS)
-    flight.style.setProperty("--progress", stage.percent / 100);
-    flight.setAttribute("aria-valuenow", stage.percent);
-
-    // Update the checklist dots
     stageItems.forEach((item, itemIndex) => {
         item.classList.toggle("is-done", itemIndex < index);
         item.classList.toggle("is-active", itemIndex === index);
@@ -228,31 +197,62 @@ function showStage(index) {
 
 
 /* =====================================
-   MAIN SEQUENCE
+   MOVE THE ROCKET
+   value is a number from 0 to 100.
 ===================================== */
 
-async function runJourney() {
-    for (let index = 0; index < STAGES.length; index++) {
-        const stage = STAGES[index];
-        const isMoving = index > 0;
-        const travel = reducedMotion ? 0 : TRAVEL_TIME;
+function setProgress(value) {
+    // Move the rocket and the yellow line (see .flight in the CSS)
+    flight.style.setProperty("--progress", value / 100);
+    flight.setAttribute("aria-valuenow", Math.round(value));
+    percent.textContent = Math.round(value);
 
-        showStage(index);
+    // Find the last stage the rocket has reached
+    let reached = 0;
 
-        if (isMoving) {
-            flight.classList.add("is-moving");
-            starSpeed = 6;
-            countTo(stage.percent, Math.max(travel, 1));
+    STAGES.forEach((stage, index) => {
+        if (value >= stage.percent) reached = index;
+    });
 
-            await wait(travel);
+    if (reached !== currentStage) {
+        showStage(reached);
+    }
+}
 
-            flight.classList.remove("is-moving");
-            starSpeed = 0.2;
+
+/* =====================================
+   MAIN SEQUENCE
+   One smooth flight from 0 to 100.
+===================================== */
+
+function runJourney() {
+    const duration = reducedMotion ? 3000 : JOURNEY_TIME;
+    const startTime = performance.now();
+
+    flight.classList.add("is-moving");
+    starSpeed = 6;
+
+    function step(now) {
+        const amount = Math.min(1, (now - startTime) / duration);
+
+        setProgress(amount * 100);
+
+        if (amount < 1) {
+            requestAnimationFrame(step);
+            return;
         }
 
-        // The "delay" at each stop
-        await wait(reducedMotion ? 700 : stage.hold);
+        arrive();
     }
+
+    requestAnimationFrame(step);
+}
+
+async function arrive() {
+    flight.classList.remove("is-moving");
+    starSpeed = 0.2;
+
+    await wait(reducedMotion ? 700 : ARRIVAL_PAUSE);
 
     stageItems.forEach(item => {
         item.classList.remove("is-active");
@@ -262,4 +262,5 @@ async function runJourney() {
     window.location.assign(DESTINATION);
 }
 
+setProgress(0);
 runJourney();

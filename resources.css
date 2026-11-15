@@ -1,6 +1,8 @@
-/* =================================
-SCROLL INDICATOR
-================================= */
+/*
+This page defines the styling for the resources page
+*/
+
+/*-------------------- Scroll indicator --------------------*/
 
 .scroll-note {
     position: absolute;
@@ -12,13 +14,9 @@ SCROLL INDICATOR
     text-transform: uppercase;
 }
 
-/*================================
-Background image
-===============================*/
+/*-------------------- Background image --------------------*/
 
-/* =================================
-   SPACE BACKGROUND
-================================= */
+/*-------------------- Space background --------------------*/
 
 #sources {
     position: relative;
@@ -47,9 +45,7 @@ Background image
     }
 }
 
-/* =================================
-GENERAL SECTIONS
-================================= */
+/*-------------------- General sections --------------------*/
 
 section {
     padding: 85px max(7vw, 24px);
@@ -73,7 +69,7 @@ section {
 
 .section-head h2 {
     font-size: clamp(2rem, 4vw, 3.3rem);
-    letter-spacing: -.055em;
+    letter-spacing: 0;
     line-height: 1.05;
     margin: 10px 0 0;
 }
@@ -84,9 +80,7 @@ section {
     margin: 0;
 }
 
-/* =================================
-SUBTLE STATISTICS
-================================= */
+/*-------------------- Subtle statistics -------------------*/
 
 /* FORCE STATISTICS INTO HORIZONTAL LAYOUT */
 
@@ -153,9 +147,7 @@ SUBTLE STATISTICS
     grid-template-columns: 1fr;
 }
 
-/* =================================
-SOURCES AND RESOURCES
-================================= */
+/*------------------ Sources and resources -----------------*/
 
 .sources {
     display: flex;
@@ -258,9 +250,7 @@ SOURCES AND RESOURCES
     font-size: .72rem;
 }
 
-/* =================================
-FOOTER
-================================= */
+/*------------------------- Footer -------------------------*/
 
 footer {
     border-top: 1px solid var(--line);
@@ -272,9 +262,7 @@ footer {
     font-size: .8rem;
 }
 
-/* =================================
-MODAL
-================================= */
+/*-------------------------- Modal -------------------------*/
 
 .modal {
     position: fixed;
@@ -320,7 +308,7 @@ MODAL
 .modal-box h2 {
     font-size: 2.2rem;
     margin: 10px 40px 5px 0;
-    letter-spacing: -.05em;
+    letter-spacing: 0;
 }
 
 .modal-box p {
@@ -402,9 +390,7 @@ footer {
     }
 }
 
-/* =================================
-   RESPONSIVE LAYOUT
-================================= */
+/*-------------------- Responsive layout -------------------*/
 
 @media (max-width: 768px) {
     #sources {

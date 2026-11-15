@@ -18,6 +18,7 @@ const countdownContainer = document.getElementById("countdownContainer");
 const countdown = document.getElementById("countdown");
 
 const warpProgress = document.getElementById("warpProgress");
+const warpPercent = document.getElementById("warpPercent");
 
 const canvas = document.getElementById("starfield");
 const ctx = canvas.getContext("2d");
@@ -41,6 +42,8 @@ let height = window.innerHeight;
 let stars = [];
 let warpSpeed = 0.35;
 let launchStarted = false;
+let progressValue = 0;
+let progressRun = 0;
 
 
 /* =====================================
@@ -51,6 +54,31 @@ function wait(milliseconds) {
     return new Promise(resolve => {
         setTimeout(resolve, milliseconds);
     });
+}
+
+
+function advanceProgress(target, duration) {
+    const start = progressValue;
+    const startTime = performance.now();
+    const run = ++progressRun;
+
+    warpProgress.style.transitionDuration = `${duration}ms`;
+    warpProgress.style.width = `${target}%`;
+
+    function step(now) {
+        if (run !== progressRun) return;
+
+        const amount = duration > 0 ? Math.min(1, (now - startTime) / duration) : 1;
+
+        progressValue = start + (target - start) * amount;
+        warpPercent.textContent = `${Math.round(progressValue)}%`;
+
+        if (amount < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
 }
 
 
@@ -210,11 +238,10 @@ async function runCountdown() {
 
         const elapsed = 10 - number;
 
-        warpProgress.style.width = `${elapsed * 10}%`;
-
         warpMessage.textContent = "Travel in progress...";
 
         if (number > 0) {
+            advanceProgress(70 + (elapsed + 1) * 2.5, reducedMotion ? 100 : 1000);
             await wait(reducedMotion ? 100 : 1000);
         }
     }
@@ -241,7 +268,7 @@ async function arriveAtDestination() {
 
     warpSpeed = 0;
 
-    warpProgress.style.width = "100%";
+    advanceProgress(100, reducedMotion ? 100 : 1000);
 
     await wait(reducedMotion ? 100 : 1500);
 
@@ -284,7 +311,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpOverlay.setAttribute("aria-hidden", "false");
 
     countdownContainer.hidden = true;
-    warpProgress.style.width = "0%";
+    advanceProgress(0, 0);
 
     //Adjusting the first value on the ratio affects delay time
     // PHASE 1: AUTHORIZATION
@@ -295,6 +322,7 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 0.5;
 
+    advanceProgress(10, reducedMotion ? 600 : 8000);
     await wait(reducedMotion ? 600 : 8000);
 
 
@@ -304,6 +332,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "INITIALIZING SYSTEMS";
     warpMessage.textContent = "Checking navigation and life support...";
 
+    advanceProgress(20, reducedMotion ? 600 : 8000);
     await wait(reducedMotion ? 600 : 8000);
 
 
@@ -313,6 +342,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "IGNITING ENGINES";
     warpMessage.textContent = "Main engines powering up...";
 
+    advanceProgress(30, reducedMotion ? 500 : 8000);
     await wait(reducedMotion ? 500 : 8000);
 
 
@@ -322,6 +352,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "ALL SYSTEMS GO";
     warpMessage.textContent = "Launch clearance confirmed. Prepare for departure.";
 
+    advanceProgress(40, reducedMotion ? 600 : 8000);
     await wait(reducedMotion ? 600 : 8000);
 
 
@@ -333,6 +364,7 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 8;
 
+    advanceProgress(50, reducedMotion ? 500 : 8000);
     await wait(reducedMotion ? 500 : 8000);
     //Adjusting the first value on the ratio affects delay time
 
@@ -350,10 +382,12 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 24;
 
+    advanceProgress(60, reducedMotion ? 800 : 8000);
     await wait(reducedMotion ? 800 : 8000);
 
     warpMessage.textContent = "Accelerating towards the Moon...";
 
+    advanceProgress(70, reducedMotion ? 500 : 8000);
     await wait(reducedMotion ? 500 : 8000);
 
 

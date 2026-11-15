@@ -454,7 +454,7 @@ a:hover {
     margin-top: 4px;
     padding: 0 20px;
     border-radius: 999px;
-    background: var(--neon-yellow);
+    background: var(--blue-yonder);
     color: var(--deep-blue);
     font-size: 19px;
     font-weight: 600;
@@ -565,7 +565,7 @@ a:hover {
 
 /*------------------------ Footer -------------------------*/
 .site-footer {
-    background: var(--neon-yellow);
+    background: var(--blue-yonder);
     color: var(--deep-blue);
     padding: 32px max(40px, calc((100% - var(--page-width)) / 2 + 40px));
     display: flex;

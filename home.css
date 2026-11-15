@@ -1,10 +1,50 @@
+/*
+This page defines the styling for the Earth (home) page
+*/
+
+/*-------------------------- Fonts -------------------------*/
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*--------------------- Page background --------------------*/
 body.home-page {
     min-height: 100vh;
+    font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
     background:
         linear-gradient(105deg, rgba(3, 12, 31, .88), rgba(3, 12, 31, .58) 58%, rgba(3, 12, 31, .14)),
         url("https://images-assets.nasa.gov/image/S84-27717/S84-27717~large.jpg") center 52% / cover fixed;
 }
 
+/*------------------------- Layout -------------------------*/
 .home-shell {
     display: grid;
     min-height: 100vh;
@@ -20,6 +60,7 @@ body.home-page {
     transform: translateY(-30px);
 }
 
+/*-------------------------- Text --------------------------*/
 .home-brand {
     color: #c8d8f0;
     font-size: .75rem;
@@ -45,7 +86,7 @@ body.home-page {
     margin: 18px 0;
     font-size: clamp(2.8rem, 7vw, 5.7rem);
     line-height: .98;
-    letter-spacing: -.065em;
+    letter-spacing: 0;
     text-shadow: 0 2px 24px rgba(0, 0, 0, .6);
 }
 
@@ -61,6 +102,7 @@ body.home-page {
     text-shadow: 0 2px 12px rgba(0, 0, 0, .8);
 }
 
+/*------------------------- Actions ------------------------*/
 .home-question {
     margin: 36px 0 14px;
     font-size: 1.05rem;
@@ -96,6 +138,7 @@ body.home-page {
     outline-offset: 4px;
 }
 
+/*----------------- Phones & Small tablets -----------------*/
 @media (max-width: 760px) {
     .home-shell {
         padding: 16px;

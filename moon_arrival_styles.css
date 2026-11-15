@@ -2,6 +2,40 @@
 This page defines the styling for the moon arrival page
 */
 
+/*-------------------------- Fonts -------------------------*/
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*-------------------------- Base --------------------------*/
 * {
     box-sizing: border-box;
 }
@@ -16,10 +50,11 @@ body {
         linear-gradient(rgba(2, 8, 23, .55), rgba(2, 8, 23, .85)),
         url("https://images-assets.nasa.gov/image/as11-40-5875/as11-40-5875~large.jpg") center / cover fixed;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
     text-align: center;
 }
 
+/*---------------------- Arrival card ----------------------*/
 .arrival {
     max-width: 700px;
     padding: 35px;
@@ -60,6 +95,7 @@ body {
     letter-spacing: .16em;
 }
 
+/*--------------------- Landing checks ---------------------*/
 .checklist {
     list-style: none;
     margin: 25px auto 0;
@@ -117,6 +153,7 @@ body {
     text-transform: uppercase;
 }
 
+/*------------------------ Briefing ------------------------*/
 .briefing {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -142,6 +179,7 @@ body {
     font-size: .8rem;
 }
 
+/*--------------------- Explore button ---------------------*/
 .explore-button {
     display: inline-flex;
     align-items: center;
@@ -194,6 +232,7 @@ body {
     font-size: 1.3rem;
 }
 
+/*------------------------- Phones -------------------------*/
 @media (max-width: 520px) {
     .arrival {
         padding: 24px 18px;
@@ -204,6 +243,7 @@ body {
     }
 }
 
+/*--------------------- Reduced motion ---------------------*/
 @media (prefers-reduced-motion: reduce) {
 
     .arrival,

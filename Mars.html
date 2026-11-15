@@ -51,7 +51,20 @@
     .mars-page main {
       width: min(100% - 36px, 920px);
       margin: 0 auto;
-      padding: clamp(48px, 9vh, 92px) 0 64px;
+      padding: clamp(104px, 14vh, 124px) 0 64px;
+    }
+
+    nav {
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .nav-dropdown {
+      pointer-events: auto;
+    }
+
+    body.mars-page[data-theme="light"] .nav-dropdown summary {
+      background: rgba(12, 24, 40, .92);
     }
 
 
@@ -59,6 +72,8 @@
       display: flex;
       justify-content: flex-end;
       margin-bottom: 24px;
+      position: static;
+      z-index: auto;
     }
 
     .theme-toggle {
@@ -71,6 +86,8 @@
       font-size: .82rem;
       font-weight: 750;
       cursor: pointer;
+      position: static;
+      z-index: auto;
     }
 
     .theme-toggle:hover {
@@ -95,7 +112,7 @@
       margin: 14px 0;
       font-size: clamp(2.5rem, 7vw, 5rem);
       line-height: .98;
-      letter-spacing: -.06em;
+      letter-spacing: 0;
     }
 
     .timeline-heading p {
@@ -311,6 +328,24 @@
 </head>
 
 <body class="mars-page" data-theme="dark">
+  <nav>
+    <details class="nav-dropdown">
+      <summary aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <div class="dropdown-links">
+        <a href="moon.html">Moon</a>
+        <a href="Mars.html">Mars</a>
+        <a href="home.html">Earth</a>
+        <a href="resources.html">Resources</a>
+        <a href="index.html">Return Home</a>
+      </div>
+    </details>
+  </nav>
+
   <main id="timeline">
     <div class="page-toolbar">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">Light mode</button>

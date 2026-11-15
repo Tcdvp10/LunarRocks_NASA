@@ -1,6 +1,41 @@
-/* =====================================
-   GLOBAL STYLING
-===================================== */
+/*
+This page defines the styling for the launch page
+*/
+
+/*-------------------------- Fonts -------------------------*/
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*--------------------- Global styling ---------------------*/
 
 * {
     box-sizing: border-box;
@@ -31,12 +66,10 @@ body.launch-page {
             transparent 45%),
         linear-gradient(120deg, #020817, #061735 65%, #081c3e);
     color: var(--white);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
 }
 
-/* =================================
-   NAVIGATION
-================================= */
+/*----------------------- Navigation -----------------------*/
 
 nav {
     position: absolute;
@@ -152,9 +185,7 @@ nav {
     padding-left: 19px;
 }
 
-/* =====================================
-   ANIMATED STARFIELD
-===================================== */
+/*------------------- Animated starfield -------------------*/
 
 #starfield {
     position: fixed;
@@ -165,9 +196,7 @@ nav {
     pointer-events: none;
 }
 
-/* =====================================
-   MISSION CONTROL
-===================================== */
+/*--------------------- Mission control --------------------*/
 
 .launch-shell {
     position: relative;
@@ -231,7 +260,7 @@ nav {
     margin: 20px 0 15px;
     font-size: clamp(2.6rem, 7vw, 5rem);
     line-height: .96;
-    letter-spacing: -.065em;
+    letter-spacing: 0;
     text-shadow: 0 2px 24px rgba(0, 0, 0, .7);
 }
 
@@ -269,9 +298,7 @@ nav {
     font-weight: 650;
 }
 
-/* =====================================
-   NAME FORM
-===================================== */
+/*------------------------ Name form -----------------------*/
 
 .agent-form {
     display: grid;
@@ -316,6 +343,7 @@ nav {
     border-radius: 50px;
     background: linear-gradient(110deg, #0b3d91, #2476d8);
     color: white;
+    font-family: inherit;
     font-size: .9rem;
     font-weight: 850;
     letter-spacing: .1em;
@@ -353,9 +381,7 @@ nav {
     box-shadow: 0 0 12px #52e6a2;
 }
 
-/* =====================================
-   SCREEN TRANSITION
-===================================== */
+/*-------------------- Screen transition -------------------*/
 
 body.launching .launch-content {
     opacity: 0;
@@ -366,9 +392,7 @@ body.launching .launch-content {
     display: none !important;
 }
 
-/* =====================================
-   FULL SCREEN WARP OVERLAY
-===================================== */
+/*---------------- Full screen warp overlay ----------------*/
 
 .warp-overlay {
     position: fixed;
@@ -385,9 +409,7 @@ body.launching .launch-content {
     isolation: isolate;
 }
 
-/* =====================================
-   FULL SCREEN WARP VIDEO
-===================================== */
+/*----------------- Full screen warp video -----------------*/
 
 .warp-video {
     position: absolute;
@@ -435,9 +457,7 @@ body.launching .launch-content {
             rgba(0, 0, 0, .85) 100%);
 }
 
-/* =====================================
-   SIDE LIGHTS
-===================================== */
+/*----------------------- Side lights ----------------------*/
 
 .warp-side-light {
     position: absolute;
@@ -481,9 +501,7 @@ body.launching .launch-content {
     }
 }
 
-/* =====================================
-   WARP TEXT
-===================================== */
+/*------------------------ Warp text -----------------------*/
 
 .warp-content {
     position: relative;
@@ -523,9 +541,7 @@ body.launching .launch-content {
     letter-spacing: .18em;
 }
 
-/* =====================================
-   COUNTDOWN
-===================================== */
+/*------------------------ Countdown -----------------------*/
 
 .countdown-container {
     display: grid;
@@ -574,29 +590,35 @@ body.launching .launch-content {
     }
 }
 
-/* =====================================
-   WARP PROGRESS BAR
-===================================== */
+/*-------------------- Warp progress bar -------------------*/
+
+.warp-percent {
+    margin: 30px 0 0;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
 
 .warp-progress {
     width: min(100%, 400px);
-    height: 3px;
-    margin: 35px auto 0;
+    height: 8px;
+    margin: 12px auto 0;
     overflow: hidden;
+    border-radius: 4px;
     background: rgba(104, 170, 255, .2);
 }
 
 .warp-progress-bar {
     width: 0;
     height: 100%;
+    border-radius: 4px;
     background: white;
     box-shadow: 0 0 15px #68aaff;
     transition: width .2s linear;
 }
 
-/* =====================================
-   ARRIVAL FLASH
-===================================== */
+/*---------------------- Arrival flash ---------------------*/
 
 .arrival-flash {
     position: absolute;
@@ -625,9 +647,7 @@ body.launching .launch-content {
     }
 }
 
-/* =====================================
-   MOBILE
-===================================== */
+/*------------------------- Mobile -------------------------*/
 
 @media (max-width: 760px) {
     .launch-shell {
@@ -657,9 +677,7 @@ body.launching .launch-content {
     }
 }
 
-/* =====================================
-   REDUCED MOTION
-===================================== */
+/*--------------------- Reduced motion ---------------------*/
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -674,9 +692,7 @@ body.launching .launch-content {
 }
 
 
-/* =====================================
-   CINEMATIC HYPERSPACE EFFECT
-===================================== */
+/*--------------- Cinematic hyperspace effect --------------*/
 
 /* Main video background */
 

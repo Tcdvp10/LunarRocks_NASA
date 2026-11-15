@@ -1,8 +1,41 @@
-/* =====================================
-   MOON -> MARS TRANSIT PAGE
-   Same dark "mission control" look as launch.css,
-   with the Space Apps reds added because we are heading to Mars.
-===================================== */
+/*
+This page defines the styling for the Mars arrival page
+Same dark "mission control" look as launch.css,
+with the Space Apps reds added because we are heading to Mars.
+*/
+
+/*-------------------------- Fonts -------------------------*/
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
 
 * {
     box-sizing: border-box;
@@ -35,12 +68,10 @@ body.transit-page {
         radial-gradient(ellipse at 20% -10%, rgba(228, 55, 0, .5), transparent 55%),
         linear-gradient(180deg, #2a0a14, var(--deep-blue) 55%, var(--deep-space));
     color: var(--white);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
 }
 
-/* =====================================
-   STARFIELD
-===================================== */
+/*------------------------ Starfield -----------------------*/
 
 #starfield {
     position: fixed;
@@ -51,9 +82,7 @@ body.transit-page {
     pointer-events: none;
 }
 
-/* =====================================
-   LAYOUT
-===================================== */
+/*------------------------- Layout -------------------------*/
 
 .transit-shell {
     position: relative;
@@ -77,10 +106,8 @@ body.transit-page {
     backdrop-filter: blur(12px);
 }
 
-/* =====================================
-   FLIGHT PATH (rocket progress)
-   The script sets --progress from 0 to 1.
-===================================== */
+/*-------------- Flight path (rocket progress) -------------*/
+/* The script sets --progress from 0 to 1. */
 
 .flight {
     --progress: 0;
@@ -148,7 +175,6 @@ body.transit-page {
     border-radius: 2px;
     background: var(--neon-yellow);
     box-shadow: 0 0 14px rgba(234, 254, 7, .7);
-    transition: height 1.8s cubic-bezier(.6, 0, .3, 1);
 }
 
 /* rocket.jpg, zoomed in so only the rocket and its flames show */
@@ -163,7 +189,6 @@ body.transit-page {
     border-radius: 30px;
     background: url("rocket.jpg") center -92px / 200px 300px no-repeat;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
-    transition: bottom 1.8s cubic-bezier(.6, 0, .3, 1);
 }
 
 /* Small shake while the engines are burning */
@@ -181,9 +206,7 @@ body.transit-page {
     }
 }
 
-/* =====================================
-   TEXT READOUT
-===================================== */
+/*---------------------- Text readout ----------------------*/
 
 .transit-brand {
     color: var(--muted);
@@ -290,9 +313,7 @@ body.transit-page {
     outline-offset: 4px;
 }
 
-/* =====================================
-   MOBILE
-===================================== */
+/*------------------------- Mobile -------------------------*/
 
 @media (max-width: 600px) {
     .transit-card {
@@ -304,14 +325,10 @@ body.transit-page {
     }
 }
 
-/* =====================================
-   REDUCED MOTION
-===================================== */
+/*--------------------- Reduced motion ---------------------*/
 
 @media (prefers-reduced-motion: reduce) {
 
-    .track-fill,
-    .rocket,
     .stages li,
     .stages li::before {
         transition: none;
