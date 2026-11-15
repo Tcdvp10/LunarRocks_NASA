@@ -1,149 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#061735">
-<meta name="description" content="Welcome home, Space Agent. Celebrate your successful mission exploring Mars and the Moon.">
-<title>Welcome Home, Space Agent — Beyond the Mission</title>
-<link rel="stylesheet" href="style.css">
-<style>
-body.home-page {
-  min-height: 100vh;
-  background:
-    linear-gradient(105deg, rgba(3, 12, 31, .88), rgba(3, 12, 31, .58) 58%, rgba(3, 12, 31, .14)),
-    url("https://images-assets.nasa.gov/image/S84-27717/S84-27717~large.jpg") center 52% / cover fixed;
-}
-
-.home-shell {
-  display: grid;
-  min-height: 100vh;
-  align-items: center;
-  width: min(100%, 1200px);
-  margin: 0 auto;
-  padding: clamp(24px, 6vw, 72px);
-}
-
-.home-content {
-  max-width: 760px;
-  padding: clamp(20px, 4vw, 48px);
-}
-
-.home-brand {
-  color: #c8d8f0;
-  font-size: .75rem;
-  font-weight: 850;
-  letter-spacing: .16em;
-}
-
-.home-brand span {
-  color: #68aaff;
-}
-
-.home-kicker {
-  margin-top: clamp(44px, 8vh, 76px);
-  color: #91c5ff;
-  font-size: .75rem;
-  font-weight: 850;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.home-content h1 {
-  max-width: 740px;
-  margin: 18px 0;
-  font-size: clamp(2.8rem, 7vw, 5.7rem);
-  line-height: .98;
-  letter-spacing: -.065em;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, .6);
-}
-
-.home-content h1 em {
-  color: #91c5ff;
-  font-style: normal;
-}
-
-.home-copy {
-  max-width: 590px;
-  color: #e0eaf8;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .8);
-}
-
-.home-question {
-  margin: 36px 0 14px;
-  font-size: 1.05rem;
-  font-weight: 750;
-}
-
-.home-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.home-actions a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-}
-
-.home-credit {
-  margin-top: 40px;
-  color: rgba(235, 243, 255, .8);
-  font-size: .75rem;
-}
-
-.home-credit a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.home-actions a:focus-visible,
-.home-credit a:focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 4px;
-}
-
-@media (max-width: 760px) {
-  .home-shell {
-    padding: 16px;
-    background: linear-gradient(90deg, rgba(3, 12, 31, .35), rgba(3, 12, 31, .15));
-  }
-
-  .home-content {
-    padding: 22px;
-  }
-
-  body.home-page {
-    background-attachment: scroll;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061735">
+  <meta name="description"
+    content="Welcome home, Space Agent. Celebrate your successful mission exploring Mars and the Moon.">
+  <title>Welcome Home - Beyond The Mission</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
 </head>
+
 <body class="home-page">
-<main class="home-shell">
-  <section class="home-content" aria-labelledby="homeTitle">
-    <div class="home-brand">BEYOND <span>/</span> THE MISSION</div>
-    <div class="home-kicker">Mission control · Earth</div>
-    <h1 id="homeTitle">Welcome back home,<br><em id="homeAgentGreeting">Space Agent!</em></h1>
-    <p class="home-copy">Congratulations on your successful mission back to planet Earth! You explored Mars and the Moon, discovered the equipment sent there, and made it home safely.</p>
-    <p class="home-question">Would you like to tell us about your mission?</p>
-    <div class="home-actions">
-      <a class="primary" href="quiz.html">Yes, take me to the quiz ↗</a>
-      <!-- Resources currently live on the main page; replace this link if a dedicated resource page is added. -->
-      <a class="secondary" href="index.html#sources">No, show me resources</a>
-    </div>
-    <p class="home-credit">Landing photo: <a href="https://images.nasa.gov/details/S84-27717" target="_blank" rel="noopener noreferrer">NASA · Space Shuttle Challenger touchdown (STS-41B)</a></p>
-  </section>
-</main>
-<script>
-const storedAgentName = localStorage.getItem("spaceAgentName");
-if (storedAgentName) {
-  const name = storedAgentName.trim().slice(0, 40);
-  if (name) document.getElementById("homeAgentGreeting").textContent = `Space Agent ${name}!`;
-  localStorage.removeItem("spaceAgentName");
-}
-</script>
+  <main class="home-shell">
+    <section class="home-content" aria-labelledby="homeTitle">
+      <div class="home-brand">BEYOND <span>/</span> THE MISSION</div>
+      <div class="home-kicker">Mission control · Earth</div>
+      <h1 id="homeTitle">Welcome back home,<br><em id="homeAgentGreeting">Space Agent!</em></h1>
+      <p class="home-copy">Congratulations on your successful mission back to planet Earth! You explored Mars and the
+        Moon, discovered the equipment sent there, and made it home safely.</p>
+      <p class="home-question">Would you like to tell us about your mission?</p>
+      <div class="home-actions">
+        <a class="primary" href="quiz.html">Yes, take me to the quiz ↗</a>
+        <!-- Resources currently live on the main page; replace this link if a dedicated resource page is added. -->
+        <a class="secondary" href="resources.html">No, show me resources</a>
+      </div>
+      <p class="home-credit">Landing photo: <a href="https://images.nasa.gov/details/S84-27717" target="_blank"
+          rel="noopener noreferrer">NASA · Space Shuttle Challenger touchdown (STS-41B)</a></p>
+    </section>
+  </main>
+  <script>
+    const storedAgentName = localStorage.getItem("spaceAgentName");
+    if (storedAgentName) {
+      const name = storedAgentName.trim().slice(0, 40);
+      if (name) document.getElementById("homeAgentGreeting").textContent = `Space Agent ${name}!`;
+      localStorage.removeItem("spaceAgentName");
+    }
+  </script>
 </body>
+
 </html>
