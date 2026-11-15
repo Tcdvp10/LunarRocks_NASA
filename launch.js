@@ -295,7 +295,7 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 0.5;
 
-    await wait(reducedMotion ? 500 : 8000);
+    await wait(reducedMotion ? 600 : 8000);
 
 
     // PHASE 2: SYSTEM INITIALIZATION
@@ -304,7 +304,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "INITIALIZING SYSTEMS";
     warpMessage.textContent = "Checking navigation and life support...";
 
-    await wait(reducedMotion ? 500 : 8000);
+    await wait(reducedMotion ? 600 : 8000);
 
 
     // PHASE 3: ENGINE IGNITION
@@ -313,7 +313,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "IGNITING ENGINES";
     warpMessage.textContent = "Main engines powering up...";
 
-    await wait(reducedMotion ? 400 : 8000);
+    await wait(reducedMotion ? 500 : 8000);
 
 
     // PHASE 4: FINAL CLEARANCE
@@ -322,7 +322,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpHeading.textContent = "ALL SYSTEMS GO";
     warpMessage.textContent = "Launch clearance confirmed. Prepare for departure.";
 
-    await wait(reducedMotion ? 500 : 8000);
+    await wait(reducedMotion ? 600 : 8000);
 
 
     // PHASE 5: LIFTOFF
@@ -333,7 +333,7 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 8;
 
-    await wait(reducedMotion ? 400 : 8000);
+    await wait(reducedMotion ? 500 : 8000);
     //Adjusting the first value on the ratio affects delay time
 
     // PHASE 6: HYPERSPACE
@@ -350,11 +350,11 @@ agentForm.addEventListener("submit", async (event) => {
 
     warpSpeed = reducedMotion ? 0 : 24;
 
-    await wait(reducedMotion ? 600 : 8000);
+    await wait(reducedMotion ? 800 : 8000);
 
     warpMessage.textContent = "Accelerating towards the Moon...";
 
-    await wait(reducedMotion ? 400 : 8000);
+    await wait(reducedMotion ? 500 : 8000);
 
 
     // PHASE 7: COUNTDOWN
