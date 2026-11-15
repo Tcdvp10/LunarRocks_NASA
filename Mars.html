@@ -6,28 +6,308 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#170b07">
   <meta name="description" content="A vertical timeline of Mars rover milestones and the stories behind them.">
-  <title>Mars - Beyond The Mission</title>
-  <link rel="stylesheet" href="Mars.css">
-  <link rel="icon" type="image/png" href="media/Space Apps Logo Color and White motif.png">
+  <title>Mars Mission Timeline</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    body.mars-page {
+      --mars-bg: #170b07;
+      --mars-panel: rgba(48, 24, 15, .95);
+      --mars-text: #fff0e4;
+      --mars-muted: #d7b6a1;
+      --mars-accent: #ff7847;
+      --mars-line: rgba(255, 132, 83, .48);
+      --mars-active: #72d6a9;
+      --mars-ended: #ffb078;
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(55, 20, 10, .72), #170b07 88%),
+        url("https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg") center top / cover fixed;
+      color: var(--mars-text);
+    }
+
+    body.mars-page[data-theme="light"] {
+      --mars-bg: #f1d7bc;
+      --mars-panel: rgba(255, 239, 218, .96);
+      --mars-text: #3c1a0e;
+      --mars-muted: #79513b;
+      --mars-accent: #ae3e1c;
+      --mars-line: rgba(107, 48, 25, .4);
+      --mars-active: #176c4b;
+      --mars-ended: #9c3d1c;
+      background-color: var(--mars-bg);
+      background-image:
+        linear-gradient(180deg, rgba(247, 215, 187, .77), rgba(239, 207, 177, .91) 58%, #f1d7bc 100%),
+        url("https://images-assets.nasa.gov/image/PIA04413/PIA04413~orig.jpg");
+    }
+
+    .mars-page main {
+      width: min(100% - 36px, 920px);
+      margin: 0 auto;
+      padding: clamp(48px, 9vh, 92px) 0 64px;
+    }
+
+
+    .page-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .theme-toggle {
+      padding: 9px 14px;
+      border: 1px solid var(--mars-line);
+      border-radius: 999px;
+      background: var(--mars-panel);
+      color: var(--mars-text);
+      font: inherit;
+      font-size: .82rem;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--mars-accent);
+    }
+
+    .timeline-heading {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .timeline-heading .kicker {
+      color: var(--mars-accent);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .timeline-heading h1 {
+      margin: 14px 0;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+
+    .timeline-heading p {
+      margin: 0;
+      color: var(--mars-muted);
+      font-size: 1.02rem;
+    }
+
+    .timeline-heading .status-key {
+      margin-top: 12px;
+      font-size: .86rem;
+    }
+
+    .mars-timeline {
+      position: relative;
+      display: grid;
+      gap: 24px;
+      max-width: 760px;
+      margin: 48px auto 0;
+      padding: 0 0 0 34px;
+      list-style: none;
+    }
+
+    .mars-timeline::before {
+      position: absolute;
+      top: 16px;
+      bottom: 16px;
+      left: 9px;
+      width: 2px;
+      background: linear-gradient(var(--mars-accent), var(--mars-line) 85%, transparent);
+      content: "";
+    }
+
+    .mars-event {
+      position: relative;
+      min-width: 0;
+    }
+
+    .mars-event::before {
+      position: absolute;
+      top: 25px;
+      left: -31px;
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--mars-bg);
+      border-radius: 50%;
+      background: var(--mars-accent);
+      box-shadow: 0 0 18px rgba(255, 120, 71, .65);
+      content: "";
+    }
+
+    .mars-event article {
+      border: 1px solid var(--mars-line);
+      border-radius: 18px;
+      background: var(--mars-panel);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, .22);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .mars-photo {
+      position: relative;
+      aspect-ratio: 16 / 8;
+      margin: 0;
+      overflow: hidden;
+      background: #422516;
+    }
+
+    .mars-photo::after {
+      position: absolute;
+      inset: 35% 0 0;
+      background: linear-gradient(transparent, rgba(23, 11, 7, .72));
+      content: "";
+      pointer-events: none;
+    }
+
+    .mars-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .mars-event article:hover .mars-photo img {
+      transform: scale(1.035);
+    }
+
+    .mars-photo figcaption {
+      position: absolute;
+      z-index: 1;
+      right: 16px;
+      bottom: 13px;
+      left: 16px;
+      color: #fff3e8;
+      font-size: .75rem;
+      font-weight: 750;
+      text-shadow: 0 1px 5px #000;
+    }
+
+    .event-copy {
+      padding: clamp(18px, 4vw, 27px);
+    }
+
+    .event-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-bottom: 10px;
+    }
+
+    .mars-event time {
+      display: inline-block;
+      color: var(--mars-accent);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+    }
+
+    .mission-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 9px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: .68rem;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .mission-status::before {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+    }
+
+    .mission-status.is-active {
+      color: var(--mars-active);
+    }
+
+    .mission-status.is-ended {
+      color: var(--mars-ended);
+    }
+
+    .mars-event h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      line-height: 1.2;
+    }
+
+    .mars-event p {
+      margin: 0;
+      color: var(--mars-muted);
+    }
+
+    .mars-event blockquote {
+      margin: 18px 0 0;
+      padding: 2px 0 2px 16px;
+      border-left: 2px solid var(--mars-accent);
+      color: var(--mars-text);
+      font-style: italic;
+    }
+
+    .story-note {
+      display: block;
+      margin-top: 11px;
+      color: var(--mars-muted);
+      font-size: .75rem;
+    }
+
+    .mission-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--mars-accent);
+      font-size: .82rem;
+      font-weight: 750;
+      text-decoration: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 3px;
+    }
+
+    .mission-link:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .mission-link:focus-visible,
+    .theme-toggle:focus-visible {
+      outline: 3px solid var(--mars-accent);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 520px) {
+      .mars-page main {
+        width: min(100% - 28px, 920px);
+      }
+
+      .mars-timeline {
+        margin-top: 34px;
+        padding-left: 28px;
+      }
+
+      .mars-event::before {
+        left: -25px;
+      }
+    }
+  </style>
 </head>
 
 <body class="mars-page" data-theme="dark">
-  <nav>
-    <details class="nav-dropdown">
-      <summary aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </summary>
-
-      <div class="dropdown-links">
-        <a href="moon.html">Moon</a>
-        <a href="Mars.html">Mars</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="resources.html">Resources</a>
-      </div>
-    </details>
-  </nav>
   <main id="timeline">
     <div class="page-toolbar">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">Light mode</button>
@@ -145,8 +425,17 @@
         </article>
       </li>
     </ol>
+    <p><a class="mission-link" href="home.html">Mission complete? Return to Earth ↗</a></p>
   </main>
-  <script src="Mars.js"></script>
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      const theme = document.body.dataset.theme === "dark" ? "light" : "dark";
+      document.body.dataset.theme = theme;
+      themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+      themeToggle.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} mode`);
+    });
+  </script>
 </body>
 
 </html>
