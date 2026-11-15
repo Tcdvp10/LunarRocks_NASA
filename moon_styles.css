@@ -45,6 +45,7 @@ This page defines the styling for the moon page
     --martian-red: #8E1100;
     --neon-yellow: #EAFE07;
     --white: #FFFFFF;
+    --cyan: #8af0e4;
 
     --page-width: 1200px;
     --spine: 4px;
@@ -56,12 +57,23 @@ This page defines the styling for the moon page
 }
 
 body {
+    position: relative;
     margin: 0;
-    background: var(--white);
-    color: var(--deep-blue);
+    background: var(--deep-blue);
+    color: var(--white);
     font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
     font-size: 19px;
     line-height: 1.6;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(7, 23, 63, .55), rgba(7, 23, 63, .82)),
+        url("moon_astronaut.jpg") center 12% / cover no-repeat;
 }
 
 img {
@@ -70,11 +82,11 @@ img {
 }
 
 a {
-    color: var(--neon-blue);
+    color: var(--blue-yonder);
 }
 
 a:hover {
-    color: var(--electric-blue);
+    color: var(--white);
 }
 
 :focus-visible {
@@ -91,61 +103,98 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #E3E7EF;
+    border-bottom: 1px solid rgba(255, 255, 255, .22);
 }
 
 .logo {
     font-size: 28px;
     font-weight: 500;
-    color: var(--deep-blue);
+    color: var(--white);
     text-decoration: none;
 }
 
-.menu summary {
+.nav-dropdown {
+    position: relative;
+    z-index: 30;
+}
+
+.nav-dropdown summary {
     list-style: none;
-    width: 56px;
-    height: 48px;
+    cursor: pointer;
+    width: 48px;
+    height: 43px;
+    border: 1px solid rgba(138, 240, 228, .45);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 7px;
-    cursor: pointer;
+    align-items: center;
+    gap: 6px;
+    background: rgba(138, 240, 228, .07);
+    box-shadow: 0 0 18px rgba(138, 240, 228, .08);
+    transition: .3s ease;
 }
 
-.menu summary::-webkit-details-marker {
+.nav-dropdown summary::-webkit-details-marker {
     display: none;
 }
 
-.menu summary span {
+.nav-dropdown summary:hover,
+.nav-dropdown[open] summary {
+    background: rgba(138, 240, 228, .18);
+    box-shadow: 0 0 25px rgba(138, 240, 228, .25);
+    border-color: var(--cyan);
+}
+
+.nav-dropdown summary span {
     display: block;
-    height: 7px;
-    background: var(--deep-blue);
+    width: 19px;
+    height: 2px;
+    border-radius: 5px;
+    background: var(--cyan);
+    transition: .3s ease;
 }
 
-.menu nav {
+.nav-dropdown[open] summary span:first-child {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-dropdown[open] summary span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-dropdown[open] summary span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.dropdown-links {
     position: absolute;
-    right: 40px;
-    top: 92px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    min-width: 180px;
-    background: var(--deep-blue);
-    border-radius: 12px;
-    padding: 8px;
+    top: 57px;
+    right: 0;
+    width: 210px;
+    padding: 12px;
+    background: rgba(12, 24, 40, .97);
+    border: 1px solid rgba(138, 240, 228, .25);
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .4);
+    display: grid;
+    gap: 4px;
 }
 
-.menu nav a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 12px 16px;
+.dropdown-links a {
+    padding: 11px 13px;
+    color: #a8b6c9;
+    font-size: 18px;
     border-radius: 8px;
+    transition: .25s ease;
+    text-decoration: none;
 }
 
-.menu nav a:hover {
-    background: var(--electric-blue);
-    color: var(--white);
+.dropdown-links a:hover {
+    color: var(--cyan);
+    background: rgba(138, 240, 228, .09);
+    padding-left: 19px;
 }
 
 /*-------------------------- Intro ---------------------------*/
@@ -161,7 +210,7 @@ a:hover {
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--rocket-red);
+    color: var(--neon-yellow);
 }
 
 .intro h1 {
@@ -173,7 +222,7 @@ a:hover {
 .intro-bar {
     margin-top: 40px;
     padding-top: 24px;
-    border-top: 1px solid #D5DCE8;
+    border-top: 1px solid rgba(255, 255, 255, .28);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -192,18 +241,19 @@ a:hover {
     padding: 0 22px;
     display: flex;
     align-items: center;
-    border: 2px solid var(--neon-blue);
+    border: 2px solid var(--blue-yonder);
     border-radius: 999px;
-    color: var(--deep-blue);
+    background: rgba(7, 23, 63, .55);
+    color: var(--white);
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
 }
 
 .year-nav a:hover {
-    background: var(--deep-blue);
-    border-color: var(--deep-blue);
-    color: var(--neon-yellow);
+    background: var(--neon-yellow);
+    border-color: var(--neon-yellow);
+    color: var(--deep-blue);
 }
 
 .legend {
@@ -257,7 +307,7 @@ a:hover {
     left: 50%;
     width: var(--spine);
     margin-left: calc(var(--spine) / -2);
-    background: var(--neon-blue);
+    background: var(--blue-yonder);
 }
 
 /* red end cap */
@@ -319,7 +369,7 @@ a:hover {
     align-self: start;
     margin-top: 66px;
     height: 4px;
-    background: var(--neon-blue);
+    background: var(--blue-yonder);
     margin-right: 50%;
 }
 
@@ -421,13 +471,13 @@ a:hover {
     margin: 12px 0 0;
     font-size: 22px;
     font-weight: 500;
-    color: var(--electric-blue);
+    color: var(--white);
 }
 
 .year-nav a.is-active {
-    background: var(--deep-blue);
-    border-color: var(--deep-blue);
-    color: var(--neon-yellow);
+    background: var(--neon-yellow);
+    border-color: var(--neon-yellow);
+    color: var(--deep-blue);
 }
 
 .js .card {
@@ -453,8 +503,9 @@ a:hover {
     max-width: calc(var(--page-width) - 80px);
     margin: 0 auto 96px;
     padding: 56px 32px;
+    border: 1px solid rgba(138, 240, 228, .35);
     border-radius: 20px;
-    background: var(--deep-blue);
+    background: rgba(7, 23, 63, .88);
     color: var(--white);
     text-align: center;
 }
@@ -548,10 +599,6 @@ a:hover {
     .intro {
         padding-left: 20px;
         padding-right: 20px;
-    }
-
-    .menu nav {
-        right: 20px;
     }
 
     .timeline {

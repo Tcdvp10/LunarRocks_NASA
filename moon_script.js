@@ -1,7 +1,7 @@
 //Java script for the moon webpage
 document.documentElement.classList.add("js");
 
-const menu = document.querySelector(".menu");
+const menu = document.querySelector(".nav-dropdown");
 const missions = [...document.querySelectorAll(".mission")];
 const cards = [...document.querySelectorAll(".card")];
 const yearLinks = [...document.querySelectorAll(".year-nav a")];
