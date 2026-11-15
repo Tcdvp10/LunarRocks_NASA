@@ -1,3 +1,502 @@
 /*
 This page defines the styling for the moon page
 */
+
+/*-------------------------- Fonts ---------------------------*/
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Fira Sans Compressed";
+    src: url("FiraSansCompressed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*------------------------ Colours -------------------------*/
+:root {
+    --blue-yonder: #2E96F5;
+    --neon-blue: #0960E1;
+    --electric-blue: #0042A6;
+    --deep-blue: #07173F;
+    --rocket-red: #E43700;
+    --martian-red: #8E1100;
+    --neon-yellow: #EAFE07;
+    --white: #FFFFFF;
+
+    --page-width: 1200px;
+    --spine: 4px;
+}
+
+/*-------------------------- Base ---------------------------*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--white);
+    color: var(--deep-blue);
+    font-family: "Fira Sans Compressed", "Arial Narrow", sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: var(--neon-blue);
+}
+
+a:hover {
+    color: var(--electric-blue);
+}
+
+:focus-visible {
+    outline: 3px solid var(--blue-yonder);
+    outline-offset: 3px;
+}
+
+/*------------------------ Header -------------------------*/
+.site-header {
+    position: relative;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E3E7EF;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--deep-blue);
+    text-decoration: none;
+}
+
+.menu summary {
+    list-style: none;
+    width: 56px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.menu summary span {
+    display: block;
+    height: 7px;
+    background: var(--deep-blue);
+}
+
+.menu nav {
+    position: absolute;
+    right: 40px;
+    top: 92px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    background: var(--deep-blue);
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.menu nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.menu nav a:hover {
+    background: var(--electric-blue);
+    color: var(--white);
+}
+
+/*-------------------------- Intro ---------------------------*/
+.intro {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 72px 40px 32px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rocket-red);
+}
+
+.intro h1 {
+    margin: 0;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1.1;
+}
+
+.intro-bar {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #D5DCE8;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.year-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.year-nav a {
+    min-height: 44px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--neon-blue);
+    border-radius: 999px;
+    color: var(--deep-blue);
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.year-nav a:hover {
+    background: var(--deep-blue);
+    border-color: var(--deep-blue);
+    color: var(--neon-yellow);
+}
+
+.legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.legend li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.swatch {
+    width: 28px;
+    height: 12px;
+    border-radius: 6px;
+}
+
+.swatch-uncrewed {
+    background: var(--blue-yonder);
+}
+
+.swatch-crewed {
+    background: var(--rocket-red);
+}
+
+/*------------------------ Timeline -------------------------*/
+.timeline {
+    list-style: none;
+    position: relative;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 48px 40px 120px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    row-gap: 40px;
+}
+
+/* the centre spine */
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 48px;
+    bottom: 120px;
+    left: 50%;
+    width: var(--spine);
+    margin-left: calc(var(--spine) / -2);
+    background: var(--neon-blue);
+}
+
+/* red end cap */
+.timeline::after {
+    content: "";
+    position: absolute;
+    bottom: 108px;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-radius: 50%;
+    background: var(--rocket-red);
+}
+
+.mission {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    position: relative;
+}
+
+/* alternate cards left / right */
+.mission .card {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.mission:nth-child(even) .card {
+    grid-column: 3;
+}
+
+/* year marker on the spine */
+.year {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    position: relative;
+    z-index: 1;
+    margin: 32px 0 0;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 2px solid var(--deep-blue);
+    background: var(--neon-yellow);
+    color: var(--deep-blue);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* connector from the spine to the card */
+.mission::before {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    margin-top: 66px;
+    height: 4px;
+    background: var(--neon-blue);
+    margin-right: 50%;
+}
+
+.mission:nth-child(even)::before {
+    margin-right: 0;
+    margin-left: 50%;
+}
+
+/* second mission in the same year: small ring instead of a year */
+.mission.same-year::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+    margin-top: 56px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 5px solid var(--neon-yellow);
+    box-shadow: 0 0 0 2px var(--deep-blue);
+    position: relative;
+    z-index: 1;
+}
+
+/*------------------------ Cards -------------------------*/
+.card {
+    background: var(--electric-blue);
+    color: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--deep-blue);
+}
+
+.card-body {
+    padding: 24px 28px 28px;
+}
+
+.card h3 {
+    margin: 12px 0 8px;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.card p {
+    margin: 0 0 12px;
+    font-size: 19px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.tag-uncrewed {
+    background: var(--blue-yonder);
+    color: var(--deep-blue);
+}
+
+.tag-crewed {
+    background: var(--rocket-red);
+    color: var(--white);
+}
+
+.card .more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    margin-top: 4px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: var(--neon-yellow);
+    color: var(--deep-blue);
+    font-size: 19px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card .more:hover {
+    background: var(--white);
+    color: var(--deep-blue);
+}
+
+/*------------------------ Footer -------------------------*/
+.site-footer {
+    background: var(--neon-yellow);
+    color: var(--deep-blue);
+    padding: 32px max(40px, calc((100% - var(--page-width)) / 2 + 40px));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 40px;
+}
+
+.footer-logo {
+    height: 64px;
+    width: auto;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--deep-blue);
+}
+
+.footer-label {
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/*---------------------- Phones & Small tablets -----------------------*/
+@media (max-width: 760px) {
+
+    .site-header,
+    .intro {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .menu nav {
+        right: 20px;
+    }
+
+    .timeline {
+        grid-template-columns: 64px minmax(0, 1fr);
+        padding: 32px 20px 96px 12px;
+    }
+
+    .timeline::before,
+    .timeline::after {
+        left: 44px;
+    }
+
+    .mission .card,
+    .mission:nth-child(even) .card {
+        grid-column: 2;
+    }
+
+    .year,
+    .mission::before,
+    .mission.same-year::after {
+        grid-column: 1;
+    }
+
+    .year {
+        width: 56px;
+        height: 56px;
+        font-size: 18px;
+    }
+
+    .mission::before,
+    .mission:nth-child(even)::before {
+        margin-top: 58px;
+        margin-left: 32px;
+        margin-right: 0;
+    }
+
+    .site-footer {
+        padding: 24px 20px;
+    }
+
+    .footer-logo {
+        height: 48px;
+    }
+}
