@@ -229,14 +229,14 @@ async function runCountdown() {
     warpKicker.textContent = "LUNAR DESTINATION LOCKED";
     warpHeading.textContent = "WARP JUMP INITIATED";
 
-    for (let number = 10; number >= 0; number--) {
+    for (let number = 3; number >= 0; number--) {
         countdown.textContent = number;
 
         countdown.style.animation = "none";
         void countdown.offsetWidth;
         countdown.style.animation = "";
 
-        const elapsed = 10 - number;
+        const elapsed = 3 - number;
 
         warpMessage.textContent = "Travel in progress...";
 
@@ -270,7 +270,7 @@ async function arriveAtDestination() {
 
     advanceProgress(100, reducedMotion ? 100 : 1000);
 
-    await wait(reducedMotion ? 100 : 1500);
+    await wait(reducedMotion ? 100 : 500);
 
     window.location.assign("moon_arrival.html");
 }
@@ -323,7 +323,7 @@ agentForm.addEventListener("submit", async (event) => {
     warpSpeed = reducedMotion ? 0 : 0.5;
 
     advanceProgress(10, reducedMotion ? 600 : 8000);
-    await wait(reducedMotion ? 600 : 8000);
+    await wait(reducedMotion ? 200 : 400);
 
 
     // PHASE 2: SYSTEM INITIALIZATION
@@ -333,42 +333,11 @@ agentForm.addEventListener("submit", async (event) => {
     warpMessage.textContent = "Checking navigation and life support...";
 
     advanceProgress(20, reducedMotion ? 600 : 8000);
-    await wait(reducedMotion ? 600 : 8000);
+    await wait(reducedMotion ? 200 : 400);
 
-
-    // PHASE 3: ENGINE IGNITION
-
-    warpKicker.textContent = "ENGINE STATUS";
-    warpHeading.textContent = "IGNITING ENGINES";
-    warpMessage.textContent = "Main engines powering up...";
-
-    advanceProgress(30, reducedMotion ? 500 : 8000);
-    await wait(reducedMotion ? 500 : 8000);
-
-
-    // PHASE 4: FINAL CLEARANCE
-
-    warpKicker.textContent = "MISSION CONTROL";
-    warpHeading.textContent = "ALL SYSTEMS GO";
-    warpMessage.textContent = "Launch clearance confirmed. Prepare for departure.";
-
-    advanceProgress(40, reducedMotion ? 600 : 8000);
-    await wait(reducedMotion ? 600 : 8000);
-
-
-    // PHASE 5: LIFTOFF
-
-    warpKicker.textContent = "LAUNCH SEQUENCE INITIATED";
-    warpHeading.textContent = "LIFTOFF!";
-    warpMessage.textContent = "Leaving Earth's atmosphere...";
-
-    warpSpeed = reducedMotion ? 0 : 8;
-
-    advanceProgress(50, reducedMotion ? 500 : 8000);
-    await wait(reducedMotion ? 500 : 8000);
     //Adjusting the first value on the ratio affects delay time
 
-    // PHASE 6: HYPERSPACE
+    // PHASE 3: HYPERSPACE
 
     missionControl.hidden = true;
 
@@ -383,12 +352,12 @@ agentForm.addEventListener("submit", async (event) => {
     warpSpeed = reducedMotion ? 0 : 24;
 
     advanceProgress(60, reducedMotion ? 800 : 8000);
-    await wait(reducedMotion ? 800 : 8000);
+    await wait(reducedMotion ? 100 : 400);
 
     warpMessage.textContent = "Accelerating towards the Moon...";
 
     advanceProgress(70, reducedMotion ? 500 : 8000);
-    await wait(reducedMotion ? 500 : 8000);
+    await wait(reducedMotion ? 100 : 300);
 
 
     // PHASE 7: COUNTDOWN
