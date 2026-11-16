@@ -692,19 +692,29 @@ iframe {
 }
 
 
-/* Hide video on mobile devices */
+/* Phones and tablets: show the whole video as a card between the text and the button */
 @media (max-width: 850px) {
-    .hero-art {
-        display: none !important;
+    .hero-video {
+        position: relative;
+        inset: auto;
+        order: 2;
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        opacity: 1;
+        border: 1px solid rgba(138, 240, 228, .15);
+        border-radius: 18px;
+        background: #101a2b;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, .35);
     }
 }
 
-@media (max-width: 850px) {
-    .hero-art {
-        display: none !important;
-    }
-
+/* Phones: smaller corners to suit the smaller card */
+@media (max-width: 600px) {
     .hero-video {
-        display: none !important;
+        border-radius: 14px;
     }
 }
