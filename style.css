@@ -712,7 +712,7 @@ iframe {
     }
 }
 
-/* Phones: smaller corners to suit the smaller card new */
+/* Phones: smaller corners to suit the smaller card */
 @media (max-width: 600px) {
     .hero-video {
         border-radius: 14px;
